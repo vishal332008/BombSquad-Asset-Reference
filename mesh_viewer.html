@@ -166,7 +166,7 @@
     }
 
     .dropdown-panel.open {
-      max-height: 320px;
+      max-height: 350px;
       opacity: 1;
       padding: 10px;
       border-width: 1px;
@@ -225,11 +225,19 @@
     }
     #texUploadBtn:hover { background: #ff990022; border-color: #ff9900; transform: translateX(2px); }
 
+    #removeTexBtn {
+      color: #ff3355;
+      border: 1px solid #ff335544;
+      background: #ff335510;
+      display: none;
+    }
+    #removeTexBtn:hover { background: #ff335522; border-color: #ff3355; transform: translateX(2px); }
+
     #texResults {
       display: flex;
       flex-direction: column;
       gap: 2px;
-      max-height: 160px;
+      max-height: 140px;
       overflow-y: auto;
     }
     #texResults .tex-item {
@@ -312,6 +320,7 @@
       <div id="texResults"></div>
       <button id="texUploadBtn">Upload</button>
       <input type="file" id="texUpload" accept=".png,image/png" style="display:none">
+      <button id="removeTexBtn">Remove Texture</button>
     </div>
   </div>
 
@@ -331,7 +340,7 @@
     import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js";
     import { OBJLoader } from "https://esm.sh/three@0.158.0/examples/jsm/loaders/OBJLoader.js";
 
-    const params = new URLSearchParams(location.search);
+    const params = new URLSearchParams(window.location.search);
     const modelName = params.get("model");
     const texName = params.get("tex");
 
@@ -397,6 +406,7 @@
 
     const meshLabel = document.getElementById("meshLabel");
     const texFloatLabel = document.getElementById("texFloatLabel");
+    const removeTexBtn = document.getElementById("removeTexBtn");
     let currentTexLabelText = null;
     let meshTopWorldPos = null;
 
@@ -406,9 +416,11 @@
       currentTexLabelText = textureName;
       if (!textureName) {
         texFloatLabel.style.display = "none";
+        removeTexBtn.style.display = "none";
       } else {
         texFloatLabel.textContent = textureName;
         texFloatLabel.style.display = "block";
+        removeTexBtn.style.display = "block";
       }
     }
 
@@ -615,6 +627,20 @@
         updateLabel(label);
       });
     }
+
+    function removeTexture() {
+      meshes.forEach(m => {
+        m.material.map = null;
+        m.material.color.set(0xd0d8e8);
+        m.material.needsUpdate = true;
+      });
+      updateLabel(null);
+      document.querySelectorAll("#texResults .tex-item").forEach(el => el.classList.remove("active"));
+      document.getElementById("texturePanel").classList.remove("open");
+      document.getElementById("textureToggle").classList.remove("active");
+    }
+
+    document.getElementById("removeTexBtn").onclick = removeTexture;
 
     document.getElementById("texUploadBtn").onclick = () => document.getElementById("texUpload").click();
     document.getElementById("texUpload").addEventListener("change", (e) => {
