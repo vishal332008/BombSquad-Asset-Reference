@@ -295,7 +295,7 @@
     DRAG = ROTATE • SCROLL = ZOOM • RIGHT CLICK = PAN
   </div>
 
-  <div id="ui-panel" style="display: none;" id="uiPanelContainer">
+  <div id="ui-panel" style="display: none;">
     <button id="settingsToggle" class="menu-toggle">⚙️ SETTINGS</button>
     <div id="settings" class="dropdown-panel">
       <button id="wireBtn">Wireframe</button>
@@ -324,7 +324,7 @@
 
   <script type="module">
     if (window.location.pathname.endsWith('.html')) {
-      window.history.replaceState({}, document.title, window.location.pathname.replace('.html', '') + window.location.search);
+      window.history.replaceState({}, document.title, window.location.pathname.replace('.html', '') + (window.location.search || ''));
     }
 
     import * as THREE from "https://esm.sh/three@0.158.0";
