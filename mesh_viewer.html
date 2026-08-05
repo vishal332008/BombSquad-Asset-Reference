@@ -228,7 +228,6 @@
     import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js";
     import { OBJLoader } from "https://esm.sh/three@0.158.0/examples/jsm/loaders/OBJLoader.js";
 
-    // Scene setup
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x080c10);
 
@@ -246,18 +245,15 @@
     controls.enableDamping = true;
     controls.dampingFactor = 0.08;
 
-    // --- LIGHTING REWRITE ---
     const ambient = new THREE.AmbientLight(0xffffff, 0.35);
     scene.add(ambient);
 
     const fillLight = new THREE.HemisphereLight(0xffffff, 0x222222, 0.5);
     scene.add(fillLight);
 
-    // Headlight follows the camera to illuminate the front (does not cast shadows)
     const headLight = new THREE.DirectionalLight(0xffffff, 1.2);
     scene.add(headLight);
 
-    // Sun light remains static at an angle to cast visible shadows
     const sunLight = new THREE.DirectionalLight(0xffffff, 1.5);
     sunLight.castShadow = true;
     sunLight.shadow.mapSize.width = 2048;
@@ -270,9 +266,7 @@
       headLight.target.position.copy(controls.target);
       scene.add(headLight.target);
     }
-    // ------------------------
 
-    // State Variables
     let meshes = [];
     let wireframeEnabled = false;
     let flatEnabled = false;
@@ -285,7 +279,6 @@
     let initialCameraPos = new THREE.Vector3();
     let initialTarget = new THREE.Vector3();
 
-    // Model Loading
     const params = new URLSearchParams(location.search);
     const modelName = params.get("model");
 
@@ -327,12 +320,10 @@
         const sphere = box.getBoundingSphere(new THREE.Sphere());
         const radius = sphere.radius;
 
-        // Position the sun diagonally above the object based on its size
         sunLight.position.set(center.x + radius * 1.5, center.y + radius * 2, center.z + radius);
         sunLight.target.position.copy(center);
         scene.add(sunLight.target);
 
-        // Shadow Bounds
         sunLight.shadow.camera.near = 0.1;
         sunLight.shadow.camera.far = radius * 10;
         sunLight.shadow.camera.left = -radius * 1.5;
@@ -341,7 +332,6 @@
         sunLight.shadow.camera.bottom = -radius * 1.5;
         sunLight.shadow.camera.updateProjectionMatrix();
 
-        // --- Grid Helper ---
         const gridSize = radius * 10;
         const gridDivisions = 50;
         const gridHelper = new THREE.GridHelper(gridSize, gridDivisions, 0x00b4ff, 0x1a2030);
@@ -352,12 +342,10 @@
         scene.add(gridHelper);
         gridHelperRef = gridHelper;
 
-        // --- Shadow Catcher Plane ---
         const planeGeo = new THREE.PlaneGeometry(gridSize, gridSize);
         const planeMat = new THREE.ShadowMaterial({ opacity: 0.6 }); 
         const shadowPlane = new THREE.Mesh(planeGeo, planeMat);
         shadowPlane.rotation.x = -Math.PI / 2;
-        // Dropped by 0.01 to prevent Z-fighting clipping with the grid
         shadowPlane.position.y = box.min.y - 0.01;
         shadowPlane.position.x = center.x;
         shadowPlane.position.z = center.z;
@@ -366,7 +354,6 @@
         scene.add(shadowPlane);
         shadowPlaneRef = shadowPlane;
 
-        // Camera Framing
         controls.target.copy(center);
         const fov = camera.fov * Math.PI / 180;
         let distance = radius / Math.sin(fov / 2);
@@ -378,7 +365,6 @@
         controls.maxDistance = radius * 5;
         controls.update();
 
-        // Save view limits for resetting
         initialCameraPos.copy(camera.position);
         initialTarget.copy(controls.target);
 
@@ -398,14 +384,12 @@
       }
     );
 
-    // Menu Toggle Logic
     document.getElementById("settingsToggle").onclick = function() {
       const menu = document.getElementById("settings");
       menu.classList.toggle("hidden");
       this.classList.toggle("active");
     };
 
-    // Features Logic
     document.getElementById("wireBtn").onclick = function() {
       wireframeEnabled = !wireframeEnabled;
       this.classList.toggle("active", wireframeEnabled);
@@ -461,14 +445,12 @@
       controls.update();
     };
 
-    // Handle Window Resizing
     window.addEventListener("resize", () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Main Render Loop
     function animate() {
       requestAnimationFrame(animate);
       controls.update();
