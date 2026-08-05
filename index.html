@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BombSquad Asset Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --panel: #0f0f1a;
+    --border: #1e1e3a;
+    --text: #e8e8f0;
+    --muted: #555570;
+    --mesh: #00b4ff;
+    --tex: #00e5ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(0,180,255,0.08) 0%, transparent 100%);
+  }
+
+  header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(90deg, #00b4ff, #00ffcc, #ff4d00, #00b4ff);
+    background-size: 300%;
+    animation: shimmer 6s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+  }
+
+  @keyframes shimmer { 0%{background-position:0%} 100%{background-position:300%} }
+
+  header p {
+    margin-top: 0.6rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 340px));
+    gap: 2rem;
+    max-width: 900px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2.2rem 1.8rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: -1;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card.meshes { border-color: #00b4ff44; }
+  .card.meshes:hover { border-color: var(--mesh); box-shadow: 0 8px 24px rgba(0,180,255,0.15); }
+  .card.meshes::before { background: radial-gradient(circle at 50% 0%, rgba(0,180,255,0.12), transparent 70%); }
+
+  .card.textures { border-color: #00e5ff44; }
+  .card.textures:hover { border-color: var(--tex); box-shadow: 0 8px 24px rgba(0,229,255,0.15); }
+  .card.textures::before { background: radial-gradient(circle at 50% 0%, rgba(0,229,255,0.12), transparent 70%); }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 2.6rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .card.meshes .card-title { color: var(--mesh); }
+  .card.textures .card-title { color: var(--tex); }
+
+  .card-desc {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  .card-count {
+    margin-top: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+    border: 1px solid;
+  }
+
+  .card.meshes .card-count { color: var(--mesh); border-color: #00b4ff44; }
+  .card.textures .card-count { color: var(--tex); border-color: #00e5ff44; }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BombSquad Asset Reference</h1>
+  <p>CHOOSE A CATEGORY - BOMBSQUAD 1.7.62</p>
+</header>
+
+<main>
+  <div class="cards">
+    <a href="meshes.html" class="card meshes">
+      <span class="card-icon">🔷</span>
+      <div class="card-title">Meshes</div>
+      <div class="card-desc">Character parts, props & level geometry names</div>
+      <div class="card-count">466 MESHES</div>
+    </a>
+    <a href="textures.html" class="card textures">
+      <span class="card-icon">🎨</span>
+      <div class="card-title">Textures</div>
+      <div class="card-desc">Colors, icons, UI, effects & every texture tag</div>
+      <div class="card-count">433 TEXTURES</div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <div style="text-align: center; color: var(--tex);">MADE BY: @chrosticey</div>
+</footer>
+
+</body>
+</html>

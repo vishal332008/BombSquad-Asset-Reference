@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BombSquad Mesh Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --panel: #0d1117;
+    --border: #1a2030;
+    --text: #d0d8e8;
+    --muted: #445566;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,255,0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 3.5rem 2rem 1.8rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(0,180,255,0.07) 0%, transparent 100%);
+  }
+  .home-link {
+    position: absolute;
+    top: 1.2rem;
+    left: 2rem;
+    z-index: 20;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #00b4ff;
+    text-decoration: none;
+    border: 1px solid #00b4ff44;
+    background: #00b4ff10;
+    padding: 0.4rem 0.8rem;
+    transition: all 0.15s ease;
+  }
+
+  .home-link:hover {
+    background: #00b4ff25;
+    border-color: #00b4ff;
+    transform: translateY(-2px);
+  }
+
+  header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.6rem, 5vw, 3rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(90deg, #00b4ff, #00ffcc, #00b4ff);
+    background-size: 200%;
+    animation: shimmer 4s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+  }
+  @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+  header p { margin-top: 0.4rem; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.2em; }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .stat-num { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: #00ffcc; }
+  .stat-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .search-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(8,12,16,0.96);
+    backdrop-filter: blur(12px);
+    padding: 0.9rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-container { position: relative; max-width: 560px; margin: 0 auto; }
+  .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+  .search-wrap input {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.55rem 1rem 0.55rem 2.2rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-wrap input:focus {
+    border-color: #00b4ff;
+    box-shadow: 0 0 14px rgba(0,180,255,0.15);
+  }
+
+  main {
+    position: relative; z-index: 1;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+    animation: fadeUp 0.35s ease both;
+  }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-left: 3px solid;
+    white-space: nowrap;
+  }
+  .section-count { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; white-space: nowrap; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.28rem 0.6rem;
+    border: 1px solid;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: all;
+  }
+  .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+  .tag.hidden { display: none; }
+
+  .no-results { display: none; text-align: center; padding: 3rem; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.1em; font-family: 'Orbitron', sans-serif; }
+
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    background: #00ffcc; color: #000;
+    font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.15em; padding: 0.45rem 1.1rem;
+    opacity: 0; pointer-events: none;
+    transition: all 0.2s ease; z-index: 9999;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  footer {
+    position: relative; z-index: 1;
+    text-align: center; padding: 1.5rem;
+    color: var(--muted); font-size: 0.68rem;
+    letter-spacing: 0.15em; border-top: 1px solid var(--border);
+  }
+
+  /* ── Section color themes ── */
+  [data-section="char-head"] .section-title   { color:#ff6b35; border-color:#ff6b35; }
+  [data-section="char-head"] .tag             { color:#ff6b35; border-color:#ff6b3544; background:#ff6b3510; }
+  [data-section="char-head"] .tag:hover       { background:#ff6b3522; border-color:#ff6b35; }
+
+  [data-section="char-torso"] .section-title  { color:#ff9500; border-color:#ff9500; }
+  [data-section="char-torso"] .tag            { color:#ff9500; border-color:#ff950044; background:#ff950010; }
+  [data-section="char-torso"] .tag:hover      { background:#ff950022; border-color:#ff9500; }
+
+  [data-section="char-pelvis"] .section-title { color:#ffbb00; border-color:#ffbb00; }
+  [data-section="char-pelvis"] .tag           { color:#ffbb00; border-color:#ffbb0044; background:#ffbb0010; }
+  [data-section="char-pelvis"] .tag:hover     { background:#ffbb0022; border-color:#ffbb00; }
+
+  [data-section="char-arm"] .section-title    { color:#ffe000; border-color:#ffe000; }
+  [data-section="char-arm"] .tag              { color:#ffe000; border-color:#ffe00044; background:#ffe00010; }
+  [data-section="char-arm"] .tag:hover        { background:#ffe00022; border-color:#ffe000; }
+
+  [data-section="char-hand"] .section-title   { color:#ccff00; border-color:#ccff00; }
+  [data-section="char-hand"] .tag             { color:#ccff00; border-color:#ccff0044; background:#ccff0010; }
+  [data-section="char-hand"] .tag:hover       { background:#ccff0022; border-color:#ccff00; }
+
+  [data-section="char-leg"] .section-title    { color:#44ff88; border-color:#44ff88; }
+  [data-section="char-leg"] .tag              { color:#44ff88; border-color:#44ff8844; background:#44ff8810; }
+  [data-section="char-leg"] .tag:hover        { background:#44ff8822; border-color:#44ff88; }
+
+  [data-section="char-toes"] .section-title   { color:#00ffcc; border-color:#00ffcc; }
+  [data-section="char-toes"] .tag             { color:#00ffcc; border-color:#00ffcc44; background:#00ffcc10; }
+  [data-section="char-toes"] .tag:hover       { background:#00ffcc22; border-color:#00ffcc; }
+
+  [data-section="char-eye"] .section-title    { color:#00eeff; border-color:#00eeff; }
+  [data-section="char-eye"] .tag              { color:#00eeff; border-color:#00eeff44; background:#00eeff10; }
+  [data-section="char-eye"] .tag:hover        { background:#00eeff22; border-color:#00eeff; }
+
+  [data-section="char-hair"] .section-title   { color:#00b4ff; border-color:#00b4ff; }
+  [data-section="char-hair"] .tag             { color:#00b4ff; border-color:#00b4ff44; background:#00b4ff10; }
+  [data-section="char-hair"] .tag:hover       { background:#00b4ff22; border-color:#00b4ff; }
+
+  [data-section="weapons"] .section-title     { color:#ff3355; border-color:#ff3355; }
+  [data-section="weapons"] .tag               { color:#ff3355; border-color:#ff335544; background:#ff335510; }
+  [data-section="weapons"] .tag:hover         { background:#ff335522; border-color:#ff3355; }
+
+  [data-section="levels"] .section-title      { color:#88ff44; border-color:#88ff44; }
+  [data-section="levels"] .tag                { color:#88ff44; border-color:#88ff4444; background:#88ff4410; }
+  [data-section="levels"] .tag:hover          { background:#88ff4422; border-color:#88ff44; }
+
+  [data-section="collide"] .section-title     { color:#55cc44; border-color:#55cc44; }
+  [data-section="collide"] .tag               { color:#55cc44; border-color:#55cc4444; background:#55cc4410; }
+  [data-section="collide"] .tag:hover         { background:#55cc4422; border-color:#55cc44; }
+
+  [data-section="levelparts"] .section-title  { color:#44aaff; border-color:#44aaff; }
+  [data-section="levelparts"] .tag            { color:#44aaff; border-color:#44aaff44; background:#44aaff10; }
+  [data-section="levelparts"] .tag:hover      { background:#44aaff22; border-color:#44aaff; }
+
+  [data-section="ui-btn"] .section-title      { color:#aa88ff; border-color:#aa88ff; }
+  [data-section="ui-btn"] .tag                { color:#aa88ff; border-color:#aa88ff44; background:#aa88ff10; }
+  [data-section="ui-btn"] .tag:hover          { background:#aa88ff22; border-color:#aa88ff; }
+
+  [data-section="ui-misc"] .section-title     { color:#cc88ff; border-color:#cc88ff; }
+  [data-section="ui-misc"] .tag               { color:#cc88ff; border-color:#cc88ff44; background:#cc88ff10; }
+  [data-section="ui-misc"] .tag:hover         { background:#cc88ff22; border-color:#cc88ff; }
+
+  [data-section="effects"] .section-title     { color:#ff88cc; border-color:#ff88cc; }
+  [data-section="effects"] .tag               { color:#ff88cc; border-color:#ff88cc44; background:#ff88cc10; }
+  [data-section="effects"] .tag:hover         { background:#ff88cc22; border-color:#ff88cc; }
+
+  [data-section="images"] .section-title      { color:#ffaaaa; border-color:#ffaaaa; }
+  [data-section="images"] .tag                { color:#ffaaaa; border-color:#ffaaaa44; background:#ffaaaa10; }
+  [data-section="images"] .tag:hover          { background:#ffaaaa22; border-color:#ffaaaa; }
+
+  [data-section="misc"] .section-title        { color:#aaaaaa; border-color:#aaaaaa; }
+  [data-section="misc"] .tag                  { color:#aaaaaa; border-color:#aaaaaa33; background:#aaaaaa08; }
+  [data-section="misc"] .tag:hover            { background:#aaaaaa18; border-color:#aaaaaa; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="home-link">← INDEX</a>
+  <h1>BombSquad Meshes</h1>
+  <p>CLICK ANY TAG TO COPY - BOMBSQUAD 1.7.62</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total Meshes</div></div>
+    <div class="stat"><div class="stat-num" id="catCount">18</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num" id="visibleCount">0</div><div class="stat-label">Showing</div></div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <div class="search-container">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search meshes..." autocomplete="off" spellcheck="false">
+  </div>
+</div>
+
+<main id="main">
+
+  <div class="section" data-section="char-head">
+    <div class="section-header"><div class="section-title">💀 Character Heads</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkHead</span><span class="tag">neoSpazHead</span><span class="tag">melHead</span><span class="tag">zoeHead</span><span class="tag">jackHead</span><span class="tag">ninjaHead</span><span class="tag">cyborgHead</span><span class="tag">frostyHead</span><span class="tag">bearHead</span><span class="tag">cowboyHead</span><span class="tag">alienHead</span><span class="tag">bonesHead</span><span class="tag">bunnyHead</span><span class="tag">robotHead</span><span class="tag">penguinHead</span><span class="tag">jumpsuitHead</span><span class="tag">warriorHead</span><span class="tag">witchHead</span><span class="tag">gladiatorHead</span><span class="tag">superheroHead</span><span class="tag">actionHeroHead</span><span class="tag">assassinHead</span><span class="tag">operaSingerHead</span><span class="tag">oldLadyHead</span><span class="tag">agentHead</span><span class="tag">pixieHead</span><span class="tag">wrestlerHead</span><span class="tag">aliHead</span><span class="tag">santaHead</span><span class="tag">wizardHead</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-torso">
+    <div class="section-header"><div class="section-title">👕 Character Torsos</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkTorso</span><span class="tag">neoSpazTorso</span><span class="tag">melTorso</span><span class="tag">zoeTorso</span><span class="tag">jackTorso</span><span class="tag">ninjaTorso</span><span class="tag">cyborgTorso</span><span class="tag">frostyTorso</span><span class="tag">bearTorso</span><span class="tag">cowboyTorso</span><span class="tag">alienTorso</span><span class="tag">bonesTorso</span><span class="tag">bunnyTorso</span><span class="tag">robotTorso</span><span class="tag">penguinTorso</span><span class="tag">jumpsuitTorso</span><span class="tag">warriorTorso</span><span class="tag">witchTorso</span><span class="tag">gladiatorTorso</span><span class="tag">superheroTorso</span><span class="tag">actionHeroTorso</span><span class="tag">assassinTorso</span><span class="tag">operaSingerTorso</span><span class="tag">oldLadyTorso</span><span class="tag">agentTorso</span><span class="tag">pixieTorso</span><span class="tag">wrestlerTorso</span><span class="tag">aliTorso</span><span class="tag">santaTorso</span><span class="tag">wizardTorso</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-pelvis">
+    <div class="section-header"><div class="section-title">🩲 Character Pelvis</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkPelvis</span><span class="tag">neoSpazPelvis</span><span class="tag">zoePelvis</span><span class="tag">cyborgPelvis</span><span class="tag">frostyPelvis</span><span class="tag">bearPelvis</span><span class="tag">cowboyPelvis</span><span class="tag">alienPelvis</span><span class="tag">bonesPelvis</span><span class="tag">bunnyPelvis</span><span class="tag">robotPelvis</span><span class="tag">penguinPelvis</span><span class="tag">jumpsuitPelvis</span><span class="tag">warriorPelvis</span><span class="tag">witchPelvis</span><span class="tag">gladiatorPelvis</span><span class="tag">superheroPelvis</span><span class="tag">actionHeroPelvis</span><span class="tag">assassinPelvis</span><span class="tag">operaSingerPelvis</span><span class="tag">oldLadyPelvis</span><span class="tag">agentPelvis</span><span class="tag">pixiePelvis</span><span class="tag">wrestlerPelvis</span><span class="tag">aliPelvis</span><span class="tag">wizardPelvis</span><span class="tag">ninjaPelvis</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-arm">
+    <div class="section-header"><div class="section-title">💪 Character Arms</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkUpperArm</span><span class="tag">kronkForeArm</span><span class="tag">neoSpazUpperArm</span><span class="tag">neoSpazForeArm</span><span class="tag">melUpperArm</span><span class="tag">melForeArm</span><span class="tag">zoeForeArm</span><span class="tag">zoeUpperArm</span><span class="tag">jackUpperArm</span><span class="tag">jackForeArm</span><span class="tag">ninjaUpperArm</span><span class="tag">ninjaForeArm</span><span class="tag">cyborgUpperArm</span><span class="tag">cyborgForeArm</span><span class="tag">frostyUpperArm</span><span class="tag">frostyForeArm</span><span class="tag">bearUpperArm</span><span class="tag">bearForeArm</span><span class="tag">cowboyUpperArm</span><span class="tag">cowboyForeArm</span><span class="tag">alienUpperArm</span><span class="tag">alienForeArm</span><span class="tag">bonesUpperArm</span><span class="tag">bonesForeArm</span><span class="tag">bunnyUpperArm</span><span class="tag">bunnyForeArm</span><span class="tag">robotUpperArm</span><span class="tag">robotForeArm</span><span class="tag">penguinUpperArm</span><span class="tag">penguinForeArm</span><span class="tag">jumpsuitUpperArm</span><span class="tag">jumpsuitForeArm</span><span class="tag">warriorUpperArm</span><span class="tag">warriorForeArm</span><span class="tag">witchUpperArm</span><span class="tag">witchForeArm</span><span class="tag">gladiatorUpperArm</span><span class="tag">gladiatorForeArm</span><span class="tag">superheroUpperArm</span><span class="tag">superheroForeArm</span><span class="tag">actionHeroUpperArm</span><span class="tag">actionHeroForeArm</span><span class="tag">assassinUpperArm</span><span class="tag">assassinForeArm</span><span class="tag">operaSingerUpperArm</span><span class="tag">operaSingerForeArm</span><span class="tag">oldLadyUpperArm</span><span class="tag">oldLadyForeArm</span><span class="tag">agentUpperArm</span><span class="tag">agentForeArm</span><span class="tag">pixieUpperArm</span><span class="tag">pixieForeArm</span><span class="tag">wrestlerUpperArm</span><span class="tag">wrestlerForeArm</span><span class="tag">aliForeArm</span><span class="tag">aliUpperArm</span><span class="tag">santaUpperArm</span><span class="tag">santaForeArm</span><span class="tag">wizardUpperArm</span><span class="tag">wizardForeArm</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-hand">
+    <div class="section-header"><div class="section-title">🤜 Character Hands</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkHand</span><span class="tag">neoSpazHand</span><span class="tag">melHand</span><span class="tag">zoeHand</span><span class="tag">jackHand</span><span class="tag">ninjaHand</span><span class="tag">cyborgHand</span><span class="tag">frostyHand</span><span class="tag">bearHand</span><span class="tag">cowboyHand</span><span class="tag">alienHand</span><span class="tag">bonesHand</span><span class="tag">bunnyHand</span><span class="tag">robotHand</span><span class="tag">penguinHand</span><span class="tag">jumpsuitHand</span><span class="tag">warriorHand</span><span class="tag">witchHand</span><span class="tag">gladiatorHand</span><span class="tag">superheroHand</span><span class="tag">actionHeroHand</span><span class="tag">assassinHand</span><span class="tag">operaSingerHand</span><span class="tag">oldLadyHand</span><span class="tag">agentHand</span><span class="tag">pixieHand</span><span class="tag">wrestlerHand</span><span class="tag">aliHand</span><span class="tag">santaHand</span><span class="tag">wizardHand</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-leg">
+    <div class="section-header"><div class="section-title">🦵 Character Legs</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkUpperLeg</span><span class="tag">kronkLowerLeg</span><span class="tag">neoSpazUpperLeg</span><span class="tag">neoSpazLowerLeg</span><span class="tag">melUpperLeg</span><span class="tag">melLowerLeg</span><span class="tag">zoeUpperLeg</span><span class="tag">zoeLowerLeg</span><span class="tag">jackUpperLeg</span><span class="tag">jackLowerLeg</span><span class="tag">ninjaUpperLeg</span><span class="tag">ninjaLowerLeg</span><span class="tag">cyborgUpperLeg</span><span class="tag">cyborgLowerLeg</span><span class="tag">frostyUpperLeg</span><span class="tag">frostyLowerLeg</span><span class="tag">bearUpperLeg</span><span class="tag">bearLowerLeg</span><span class="tag">cowboyUpperLeg</span><span class="tag">cowboyLowerLeg</span><span class="tag">alienUpperLeg</span><span class="tag">alienLowerLeg</span><span class="tag">bonesUpperLeg</span><span class="tag">bonesLowerLeg</span><span class="tag">bunnyUpperLeg</span><span class="tag">bunnyLowerLeg</span><span class="tag">robotUpperLeg</span><span class="tag">robotLowerLeg</span><span class="tag">penguinUpperLeg</span><span class="tag">penguinLowerLeg</span><span class="tag">jumpsuitUpperLeg</span><span class="tag">jumpsuitLowerLeg</span><span class="tag">warriorUpperLeg</span><span class="tag">warriorLowerLeg</span><span class="tag">witchUpperLeg</span><span class="tag">witchLowerLeg</span><span class="tag">gladiatorUpperLeg</span><span class="tag">gladiatorLowerLeg</span><span class="tag">superheroUpperLeg</span><span class="tag">superheroLowerLeg</span><span class="tag">actionHeroUpperLeg</span><span class="tag">actionHeroLowerLeg</span><span class="tag">assassinUpperLeg</span><span class="tag">assassinLowerLeg</span><span class="tag">operaSingerUpperLeg</span><span class="tag">operaSingerLowerLeg</span><span class="tag">oldLadyUpperLeg</span><span class="tag">oldLadyLowerLeg</span><span class="tag">agentUpperLeg</span><span class="tag">agentLowerLeg</span><span class="tag">pixieUpperLeg</span><span class="tag">pixieLowerLeg</span><span class="tag">wrestlerUpperLeg</span><span class="tag">wrestlerLowerLeg</span><span class="tag">aliUpperLeg</span><span class="tag">aliLowerLeg</span><span class="tag">santaUpperLeg</span><span class="tag">santaLowerLeg</span><span class="tag">wizardUpperLeg</span><span class="tag">wizardLowerLeg</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-toes">
+    <div class="section-header"><div class="section-title">🦶 Character Toes</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">kronkToes</span><span class="tag">neoSpazToes</span><span class="tag">melToes</span><span class="tag">zoeToes</span><span class="tag">jackToes</span><span class="tag">ninjaToes</span><span class="tag">cyborgToes</span><span class="tag">frostyToes</span><span class="tag">bearToes</span><span class="tag">cowboyToes</span><span class="tag">alienToes</span><span class="tag">bonesToes</span><span class="tag">bunnyToes</span><span class="tag">robotToes</span><span class="tag">penguinToes</span><span class="tag">jumpsuitToes</span><span class="tag">warriorToes</span><span class="tag">witchToes</span><span class="tag">gladiatorToes</span><span class="tag">superheroToes</span><span class="tag">actionHeroToes</span><span class="tag">assassinToes</span><span class="tag">operaSingerToes</span><span class="tag">oldLadyToes</span><span class="tag">agentToes</span><span class="tag">pixieToes</span><span class="tag">wrestlerToes</span><span class="tag">aliToes</span><span class="tag">santaToes</span><span class="tag">wizardToes</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-eye">
+    <div class="section-header"><div class="section-title">👁️ Eyes & Face</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">eyeBall</span><span class="tag">eyeBallIris</span><span class="tag">eyeLid</span><span class="tag">plasticEyesTransparent</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="char-hair">
+    <div class="section-header"><div class="section-title">💇 Hair & Extras</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">hairTuft1</span><span class="tag">hairTuft1b</span><span class="tag">hairTuft2</span><span class="tag">hairTuft3</span><span class="tag">hairTuft4</span><span class="tag">runningShoes</span><span class="tag">wing</span><span class="tag">boxingGlove</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="weapons">
+    <div class="section-header"><div class="section-title">💣 Weapons & Items</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">bomb</span><span class="tag">bombSticky</span><span class="tag">impactBomb</span><span class="tag">landMine</span><span class="tag">tnt</span><span class="tag">shield</span><span class="tag">puck</span><span class="tag">egg</span><span class="tag">powerup</span><span class="tag">powerupSimple</span><span class="tag">flagPole</span><span class="tag">flagStand</span><span class="tag">shrapnel1</span><span class="tag">shrapnelBoard</span><span class="tag">shrapnelSlime</span><span class="tag">shockWave</span><span class="tag">scorch</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="levels">
+    <div class="section-header"><div class="section-title">🗺️ Level Meshes</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">stepRightUpLevel</span><span class="tag">roundaboutLevel</span><span class="tag">zigZagLevel</span><span class="tag">rampageLevel</span><span class="tag">doomShroomLevel</span><span class="tag">towerDLevel</span><span class="tag">bridgitLevelTop</span><span class="tag">cragCastleLevel</span><span class="tag">thePadLevel</span><span class="tag">courtyardLevel</span><span class="tag">alwaysLandLevel</span><span class="tag">tipTopLevel</span><span class="tag">monkeyFaceLevel</span><span class="tag">lakeFrigid</span><span class="tag">lakeFrigidTop</span><span class="tag">lakeFrigidReflections</span><span class="tag">footballStadium</span><span class="tag">hockeyStadiumInner</span><span class="tag">hockeyStadiumOuter</span><span class="tag">hockeyStadiumStands</span><span class="tag">bigG</span><span class="tag">trees</span><span class="tag">natureBackground</span><span class="tag">doomShroomStem</span><span class="tag">doomShroomBG</span><span class="tag">rampageBG</span><span class="tag">rampageBG2</span><span class="tag">alwaysLandBG</span><span class="tag">tipTopBG</span><span class="tag">thePadBG</span><span class="tag">thePadBGSmall</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="collide">
+    <div class="section-header"><div class="section-title">🧱 Collision & Bumper Meshes</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">stepRightUpLevelCollide</span><span class="tag">roundaboutLevelBumper</span><span class="tag">zigZagLevelBumper</span><span class="tag">zigZagLevelCollide</span><span class="tag">rampageLevelCollide</span><span class="tag">rampageBumper</span><span class="tag">doomShroomLevelCollide</span><span class="tag">doomShroomStemCollide</span><span class="tag">towerDLevelCollide</span><span class="tag">towerDPlayerWall</span><span class="tag">bridgitLevelCollide</span><span class="tag">bridgitLevelRailingCollide</span><span class="tag">cragCastleLevelCollide</span><span class="tag">cragCastleLevelBumper</span><span class="tag">thePadLevelCollide</span><span class="tag">thePadLevelBumper</span><span class="tag">courtyardLevelCollide</span><span class="tag">courtyardPlayerWall</span><span class="tag">alwaysLandLevelCollide</span><span class="tag">tipTopLevelCollide</span><span class="tag">tipTopLevelBumper</span><span class="tag">monkeyFaceLevelCollide</span><span class="tag">monkeyFaceLevelBumper</span><span class="tag">lakeFrigidCollide</span><span class="tag">footballStadiumCollide</span><span class="tag">hockeyStadiumCollide</span><span class="tag">bigGCollide</span><span class="tag">bigGBumper</span><span class="tag">natureBackgroundCollide</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="levelparts">
+    <div class="section-header"><div class="section-title">🏗️ Level Parts & VR Fills</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">stepRightUpLevelBottom</span><span class="tag">roundaboutLevelBottom</span><span class="tag">zigZagLevelBottom</span><span class="tag">rampageLevelBottom</span><span class="tag">towerDLevelBottom</span><span class="tag">bridgitLevelBottom</span><span class="tag">cragCastleLevelBottom</span><span class="tag">thePadLevelBottom</span><span class="tag">courtyardLevelBottom</span><span class="tag">alwaysLandLevelBottom</span><span class="tag">tipTopLevelBottom</span><span class="tag">monkeyFaceLevelBottom</span><span class="tag">bigGBottom</span><span class="tag">stepRightUpVRFillMound</span><span class="tag">cragCastleVRFillMound</span><span class="tag">doomShroomVRFill</span><span class="tag">rampageVRFill</span><span class="tag">thePadVRFillTop</span><span class="tag">thePadVRFillBottom</span><span class="tag">thePadVRFillMound</span><span class="tag">alwaysLandVRFillMound</span><span class="tag">lakeFrigidVRFill</span><span class="tag">footballStadiumVRFill</span><span class="tag">natureBackgroundVRFill</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="ui-btn">
+    <div class="section-header"><div class="section-title">🔘 UI Buttons</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">buttonSmallOpaque</span><span class="tag">buttonSmallTransparent</span><span class="tag">buttonMediumOpaque</span><span class="tag">buttonMediumTransparent</span><span class="tag">buttonLargeOpaque</span><span class="tag">buttonLargeTransparent</span><span class="tag">buttonLargerOpaque</span><span class="tag">buttonLargerTransparent</span><span class="tag">buttonBackOpaque</span><span class="tag">buttonBackTransparent</span><span class="tag">buttonBackSmallOpaque</span><span class="tag">buttonBackSmallTransparent</span><span class="tag">buttonSquareOpaque</span><span class="tag">buttonSquareTransparent</span><span class="tag">buttonTabOpaque</span><span class="tag">buttonTabTransparent</span><span class="tag">buttonNull</span><span class="tag">actionButtonLeft</span><span class="tag">actionButtonRight</span><span class="tag">actionButtonTop</span><span class="tag">actionButtonBottom</span><span class="tag">level_select_button_opaque</span><span class="tag">level_select_button_transparent</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="ui-misc">
+    <div class="section-header"><div class="section-title">🖥️ UI Misc</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">toolbarBacking</span><span class="tag">toolbarBackingOpaque</span><span class="tag">toolbarBackingTransparent</span><span class="tag">toolbarBackingTop</span><span class="tag">toolbarBackingTop2</span><span class="tag">toolbarBackingBottom</span><span class="tag">toolbarBackingBottom2</span><span class="tag">windowHSmallVMedOpaque</span><span class="tag">windowHSmallVMedTransparent</span><span class="tag">windowHSmallVSmallOpaque</span><span class="tag">windowHSmallVSmallTransparent</span><span class="tag">windowBGBlotch</span><span class="tag">scrollBarThumbOpaque</span><span class="tag">scrollBarThumbTransparent</span><span class="tag">scrollBarThumbShortOpaque</span><span class="tag">scrollBarThumbShortTransparent</span><span class="tag">scrollBarThumbShortSimple</span><span class="tag">scrollBarThumbSimple</span><span class="tag">scrollBarTroughTransparent</span><span class="tag">scrollWidgetShort</span><span class="tag">frameInset</span><span class="tag">softEdgeOutside</span><span class="tag">softEdgeInside</span><span class="tag">currencyMeter</span><span class="tag">currencyPlusButton</span><span class="tag">meterTransparent</span><span class="tag">heartOpaque</span><span class="tag">heartTransparent</span><span class="tag">achievementOutline</span><span class="tag">checkTransparent</span><span class="tag">crossOut</span><span class="tag">textBoxTransparent</span><span class="tag">angryComputerTransparent</span><span class="tag">logoTransparent</span><span class="tag">logo</span><span class="tag">playerLineup1Transparent</span><span class="tag">playerLineup2Transparent</span><span class="tag">playerLineup3Transparent</span><span class="tag">playerLineup4Transparent</span><span class="tag">arrowFront</span><span class="tag">arrowBack</span><span class="tag">locator</span><span class="tag">locatorBox</span><span class="tag">locatorCircle</span><span class="tag">locatorCircleOutline</span><span class="tag">overlayGuide</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="effects">
+    <div class="section-header"><div class="section-title">✨ Effects & Particles</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">flash</span><span class="tag">shockWave</span><span class="tag">scorch</span><span class="tag">vrFade</span><span class="tag">vrOverlay</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="images">
+    <div class="section-header"><div class="section-title">🖼️ Image Planes</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">image1x1</span><span class="tag">image1x1FullScreen</span><span class="tag">image1x1VRFullScreen</span><span class="tag">image2x1</span><span class="tag">image2x1Vertical</span><span class="tag">image4x1</span><span class="tag">image16x1</span>
+    </div>
+  </div>
+
+  <div class="section" data-section="misc">
+    <div class="section-header"><div class="section-title">⚙️ Misc / System</div><div class="section-count"></div><div class="section-line"></div></div>
+    <div class="tags">
+      <span class="tag">box</span><span class="tag">cylinder</span><span class="tag">puck</span><span class="tag">trees</span><span class="tag">egg</span>
+    </div>
+  </div>
+
+  <div class="no-results" id="noResults">NO MESHES FOUND</div>
+</main>
+
+<div class="toast" id="toast">COPIED!</div>
+<footer>
+  <div style="text-align: center; margin-top: 0.4rem; color: var(--accent2);">MADE BY: @chrosticey</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.section').forEach(sec => {
+    const tags = sec.querySelectorAll('.tag');
+    sec.querySelector('.section-count').textContent = tags.length + ' meshes';
+  });
+
+  const allTags = document.querySelectorAll('.tag');
+  document.getElementById('totalCount').textContent = allTags.length;
+  document.getElementById('visibleCount').textContent = allTags.length;
+
+  const toast = document.getElementById('toast');
+  let timer;
+  allTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      navigator.clipboard.writeText(tag.textContent).catch(()=>{});
+      clearTimeout(timer);
+      toast.classList.add('show');
+      timer = setTimeout(() => toast.classList.remove('show'), 1200);
+    });
+  });
+
+  const search = document.getElementById('search');
+  const noResults = document.getElementById('noResults');
+  const sections = document.querySelectorAll('.section');
+
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    let visible = 0;
+    sections.forEach(sec => {
+      const tags = sec.querySelectorAll('.tag');
+      let sv = 0;
+      tags.forEach(t => {
+        const m = !q || t.textContent.toLowerCase().includes(q);
+        t.classList.toggle('hidden', !m);
+        if (m) { sv++; visible++; }
+      });
+      sec.style.display = sv === 0 ? 'none' : '';
+      sec.querySelector('.section-count').textContent = (q ? sv + ' / ' + tags.length : tags.length) + ' meshes';
+    });
+    document.getElementById('visibleCount').textContent = visible;
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  });
+</script>
+</body>
+</html>
