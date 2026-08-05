@@ -655,6 +655,11 @@
 </footer>
 
 <script>
+  if (window.location.pathname.endsWith('.html')) {
+    const newUrl = window.location.pathname.replace('.html', '');
+    window.history.replaceState({}, document.title, newUrl);
+  }
+
   document.querySelectorAll('.section').forEach(sec => {
     const tags = sec.querySelectorAll('.tag');
     const countEl = sec.querySelector('.section-count');
@@ -740,7 +745,7 @@ function toFileName(name) {
 document.querySelectorAll(".tag").forEach(tag => {
 
   tag.addEventListener("mouseenter", e => {
-    const file = "textures/" + toFileName(tag.textContent.trim());
+    const file = "texture_files/" + toFileName(tag.textContent.trim());
     previewImg.src = file;
     preview.style.display = "block";
   });

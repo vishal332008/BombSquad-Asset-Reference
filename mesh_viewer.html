@@ -225,6 +225,12 @@
   </div>
 
   <script type="module">
+    if (window.location.pathname.endsWith('.html')) {
+      const newPath = window.location.pathname.replace('.html', '');
+      const newUrl = newPath + window.location.search;
+      window.history.replaceState({}, document.title, newUrl);
+    }
+
     import * as THREE from "https://esm.sh/three@0.158.0";
     import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js";
     import { OBJLoader } from "https://esm.sh/three@0.158.0/examples/jsm/loaders/OBJLoader.js";
@@ -292,7 +298,7 @@
     const loader = new OBJLoader();
 
     loader.load(
-      "meshes/" + modelName,
+      "mesh_files/" + modelName,
       (object) => {
         let meshFound = false;
 
