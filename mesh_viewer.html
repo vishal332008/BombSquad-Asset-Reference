@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mesh Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080c10;
+      --border: #1a2030;
+      --text: #d0d8e8;
+      --accent: #00b4ff;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,180,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,180,255,0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #info {
+      position: fixed;
+      bottom: 10px;
+      left: 15px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      opacity: .5;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    #backBtn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 20;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid #00b4ff44;
+      background: #00b4ff10;
+      padding: 0.4rem 0.8rem;
+      transition: all 0.15s ease;
+      backdrop-filter: blur(4px);
+    }
+    #backBtn:hover {
+      background: #00b4ff25;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Collapsible UI Panel */
+    #ui-panel {
+      position: fixed;
+      top: 65px;
+      left: 15px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    #settingsToggle {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      background: rgba(0, 180, 255, 0.1);
+      border: 1px solid rgba(0, 180, 255, 0.4);
+      padding: 0.5rem 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    #settingsToggle:hover {
+      background: rgba(0, 180, 255, 0.2);
+      border-color: var(--accent);
+    }
+    #settingsToggle.active {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 10px rgba(0,180,255,0.4);
+    }
+
+    #settings {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform-origin: top left;
+      opacity: 1;
+      transform: translateY(0);
+      background: rgba(8, 12, 16, 0.6);
+      padding: 10px;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    #settings.hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+    }
+
+    #settings button {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      width: 100%;
+      text-align: left;
+    }
+
+    /* Button Color Themes */
+    #wireBtn { color: #00ffcc; border: 1px solid #00ffcc44; background: #00ffcc10; }
+    #wireBtn:hover { background: #00ffcc22; border-color: #00ffcc; transform: translateX(2px); }
+    #wireBtn.active { background: #00ffcc; color: #000; border-color: #00ffcc; box-shadow: 0 0 10px rgba(0,255,204,0.4); }
+
+    #flatBtn { color: #ccff00; border: 1px solid #ccff0044; background: #ccff0010; }
+    #flatBtn:hover { background: #ccff0022; border-color: #ccff00; transform: translateX(2px); }
+    #flatBtn.active { background: #ccff00; color: #000; border-color: #ccff00; box-shadow: 0 0 10px rgba(204,255,0,0.4); }
+
+    #lightBtn { color: #ffbb00; border: 1px solid #ffbb0044; background: #ffbb0010; }
+    #lightBtn:hover { background: #ffbb0022; border-color: #ffbb00; transform: translateX(2px); }
+    #lightBtn.active { background: #ffbb00; color: #000; border-color: #ffbb00; box-shadow: 0 0 10px rgba(255,187,0,0.4); }
+
+    #shadowBtn { color: #aa88ff; border: 1px solid #aa88ff44; background: #aa88ff10; }
+    #shadowBtn:hover { background: #aa88ff22; border-color: #aa88ff; transform: translateX(2px); }
+    #shadowBtn.active { background: #aa88ff; color: #000; border-color: #aa88ff; box-shadow: 0 0 10px rgba(170,136,255,0.4); }
+
+    #gridBtn { color: #44ff88; border: 1px solid #44ff8844; background: #44ff8810; }
+    #gridBtn:hover { background: #44ff8822; border-color: #44ff88; transform: translateX(2px); }
+    #gridBtn.active { background: #44ff88; color: #000; border-color: #44ff88; box-shadow: 0 0 10px rgba(68,255,136,0.4); }
+
+    #resetBtn { color: #ff3355; border: 1px solid #ff335544; background: #ff335510; margin-top: 5px; }
+    #resetBtn:hover { background: #ff335522; border-color: #ff3355; transform: translateX(2px); }
+    #resetBtn:active { background: #ff3355; color: #000; transform: translateX(0); }
+
+    /* Loading UI */
+    #status {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      z-index: 10;
+    }
+    #progress-container {
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      margin-top: 12px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    #progress-bar {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      transition: width 0.1s linear;
+    }
+
+    canvas {
+      display: block;
+      position: relative;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="meshes.html" id="backBtn">← BACK</a>
+
+  <div id="info">
+    DRAG = ROTATE • SCROLL = ZOOM • RIGHT CLICK = PAN
+  </div>
+
+  <div id="ui-panel">
+    <button id="settingsToggle">⚙️ SETTINGS</button>
+    
+    <div id="settings" class="hidden">
+      <button id="wireBtn">Wireframe</button>
+      <button id="flatBtn">Flat Shading</button>
+      <button id="lightBtn">Sharp Light</button>
+      <button id="shadowBtn">Shadows</button>
+      <button id="gridBtn" class="active">Grid</button>
+      <button id="resetBtn">Reset View</button>
+    </div>
+  </div>
+
+  <div id="status">
+    <div id="progress-text">INITIALIZING...</div>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.158.0";
+    import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js";
+    import { OBJLoader } from "https://esm.sh/three@0.158.0/examples/jsm/loaders/OBJLoader.js";
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x080c10);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 10000);
+    camera.position.set(0, 0, 3);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true; 
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+
+    // --- LIGHTING REWRITE ---
+    const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+    scene.add(ambient);
+
+    const fillLight = new THREE.HemisphereLight(0xffffff, 0x222222, 0.5);
+    scene.add(fillLight);
+
+    // Headlight follows the camera to illuminate the front (does not cast shadows)
+    const headLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    scene.add(headLight);
+
+    // Sun light remains static at an angle to cast visible shadows
+    const sunLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.width = 2048;
+    sunLight.shadow.mapSize.height = 2048;
+    sunLight.shadow.bias = -0.0005; 
+    scene.add(sunLight);
+
+    function updateHeadLight() {
+      headLight.position.copy(camera.position);
+      headLight.target.position.copy(controls.target);
+      scene.add(headLight.target);
+    }
+    // ------------------------
+
+    // State Variables
+    let meshes = [];
+    let wireframeEnabled = false;
+    let flatEnabled = false;
+    let sharpLight = false;
+    let shadowsEnabled = false;
+    let gridEnabled = true; 
+    
+    let shadowPlaneRef = null;
+    let gridHelperRef = null;
+    let initialCameraPos = new THREE.Vector3();
+    let initialTarget = new THREE.Vector3();
+
+    // Model Loading
+    const params = new URLSearchParams(location.search);
+    const modelName = params.get("model");
+
+    if (!modelName) {
+      document.getElementById("progress-text").innerHTML = "<span style='color:#ff3355'>NO MODEL SPECIFIED</span>";
+      document.getElementById("progress-container").style.display = "none";
+      throw new Error("Missing model");
+    }
+
+    const loader = new OBJLoader();
+
+    loader.load(
+      "meshes/" + modelName,
+      (object) => {
+        let meshFound = false;
+
+        object.traverse(child => {
+          if (child.isMesh) {
+            meshFound = true;
+            meshes.push(child);
+            child.castShadow = true;
+            child.receiveShadow = true;
+            child.material = new THREE.MeshStandardMaterial({
+              color: 0xd0d8e8,
+              roughness: 0.45,
+              metalness: 0,
+              flatShading: false
+            });
+          }
+        });
+
+        if (!meshFound) throw new Error("No mesh found");
+
+        scene.add(object);
+        object.updateMatrixWorld(true);
+
+        const box = new THREE.Box3().setFromObject(object);
+        const center = box.getCenter(new THREE.Vector3());
+        const sphere = box.getBoundingSphere(new THREE.Sphere());
+        const radius = sphere.radius;
+
+        // Position the sun diagonally above the object based on its size
+        sunLight.position.set(center.x + radius * 1.5, center.y + radius * 2, center.z + radius);
+        sunLight.target.position.copy(center);
+        scene.add(sunLight.target);
+
+        // Shadow Bounds
+        sunLight.shadow.camera.near = 0.1;
+        sunLight.shadow.camera.far = radius * 10;
+        sunLight.shadow.camera.left = -radius * 1.5;
+        sunLight.shadow.camera.right = radius * 1.5;
+        sunLight.shadow.camera.top = radius * 1.5;
+        sunLight.shadow.camera.bottom = -radius * 1.5;
+        sunLight.shadow.camera.updateProjectionMatrix();
+
+        // --- Grid Helper ---
+        const gridSize = radius * 10;
+        const gridDivisions = 50;
+        const gridHelper = new THREE.GridHelper(gridSize, gridDivisions, 0x00b4ff, 0x1a2030);
+        gridHelper.position.y = box.min.y;
+        gridHelper.position.x = center.x;
+        gridHelper.position.z = center.z;
+        gridHelper.visible = true; 
+        scene.add(gridHelper);
+        gridHelperRef = gridHelper;
+
+        // --- Shadow Catcher Plane ---
+        const planeGeo = new THREE.PlaneGeometry(gridSize, gridSize);
+        const planeMat = new THREE.ShadowMaterial({ opacity: 0.6 }); 
+        const shadowPlane = new THREE.Mesh(planeGeo, planeMat);
+        shadowPlane.rotation.x = -Math.PI / 2;
+        // Dropped by 0.01 to prevent Z-fighting clipping with the grid
+        shadowPlane.position.y = box.min.y - 0.01;
+        shadowPlane.position.x = center.x;
+        shadowPlane.position.z = center.z;
+        shadowPlane.receiveShadow = true;
+        shadowPlane.visible = false; 
+        scene.add(shadowPlane);
+        shadowPlaneRef = shadowPlane;
+
+        // Camera Framing
+        controls.target.copy(center);
+        const fov = camera.fov * Math.PI / 180;
+        let distance = radius / Math.sin(fov / 2);
+        distance *= 1.35;
+        camera.position.copy(center.clone().add(new THREE.Vector3(distance, distance * 0.8, distance)));
+        camera.lookAt(center);
+
+        controls.minDistance = radius * 0.5;
+        controls.maxDistance = radius * 5;
+        controls.update();
+
+        // Save view limits for resetting
+        initialCameraPos.copy(camera.position);
+        initialTarget.copy(controls.target);
+
+        document.getElementById("status").remove();
+      },
+      (progress) => {
+        if (progress.total) {
+          const percent = (progress.loaded / progress.total) * 100;
+          document.getElementById("progress-text").innerText = "LOADING " + percent.toFixed(0) + "%";
+          document.getElementById("progress-bar").style.width = percent + "%";
+        }
+      },
+      (error) => {
+        console.error(error);
+        document.getElementById("progress-text").innerHTML = "<span style='color:#ff3355'>FAILED LOADING MODEL</span>";
+        document.getElementById("progress-bar").style.background = "#ff3355";
+      }
+    );
+
+    // Menu Toggle Logic
+    document.getElementById("settingsToggle").onclick = function() {
+      const menu = document.getElementById("settings");
+      menu.classList.toggle("hidden");
+      this.classList.toggle("active");
+    };
+
+    // Features Logic
+    document.getElementById("wireBtn").onclick = function() {
+      wireframeEnabled = !wireframeEnabled;
+      this.classList.toggle("active", wireframeEnabled);
+      meshes.forEach(mesh => {
+        mesh.material.wireframe = wireframeEnabled;
+      });
+    };
+
+    document.getElementById("flatBtn").onclick = function() {
+      flatEnabled = !flatEnabled;
+      this.classList.toggle("active", flatEnabled);
+      meshes.forEach(mesh => {
+        mesh.material.flatShading = flatEnabled;
+        mesh.material.needsUpdate = true;
+      });
+    };
+
+    document.getElementById("lightBtn").onclick = function() {
+      sharpLight = !sharpLight;
+      this.classList.toggle("active", sharpLight);
+      if (sharpLight) {
+        sunLight.intensity = 2.5;
+        headLight.intensity = 1.8;
+        ambient.intensity = 0.15;
+        fillLight.intensity = 0.5;
+      } else {
+        sunLight.intensity = 1.5;
+        headLight.intensity = 1.2;
+        ambient.intensity = 0.35;
+        fillLight.intensity = 0.5;
+      }
+    };
+
+    document.getElementById("shadowBtn").onclick = function() {
+      shadowsEnabled = !shadowsEnabled;
+      this.classList.toggle("active", shadowsEnabled);
+      if (shadowPlaneRef) {
+        shadowPlaneRef.visible = shadowsEnabled;
+      }
+    };
+
+    document.getElementById("gridBtn").onclick = function() {
+      gridEnabled = !gridEnabled;
+      this.classList.toggle("active", gridEnabled);
+      if (gridHelperRef) {
+        gridHelperRef.visible = gridEnabled;
+      }
+    };
+
+    document.getElementById("resetBtn").onclick = () => {
+      camera.position.copy(initialCameraPos);
+      controls.target.copy(initialTarget);
+      controls.update();
+    };
+
+    // Handle Window Resizing
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Main Render Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      updateHeadLight();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

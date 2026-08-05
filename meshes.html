@@ -158,23 +158,13 @@
     letter-spacing: 0.03em;
     cursor: pointer;
     transition: all 0.15s ease;
-    user-select: all;
+    user-select: none;
+    position: relative;
   }
   .tag:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
   .tag.hidden { display: none; }
 
   .no-results { display: none; text-align: center; padding: 3rem; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.1em; font-family: 'Orbitron', sans-serif; }
-
-  .toast {
-    position: fixed; bottom: 2rem; left: 50%;
-    transform: translateX(-50%) translateY(6px);
-    background: #00ffcc; color: #000;
-    font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.15em; padding: 0.45rem 1.1rem;
-    opacity: 0; pointer-events: none;
-    transition: all 0.2s ease; z-index: 9999;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   footer {
     position: relative; z-index: 1;
@@ -262,7 +252,7 @@
 <header>
   <a href="index.html" class="home-link">← INDEX</a>
   <h1>BombSquad Meshes</h1>
-  <p>CLICK ANY TAG TO COPY - BOMBSQUAD 1.7.62</p>
+  <p>CLICK ANY TAG TO VIEW THE MESH - BOMBSQUAD 1.8.0</p>
   <div class="stats">
     <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total Meshes</div></div>
     <div class="stat"><div class="stat-num" id="catCount">18</div><div class="stat-label">Categories</div></div>
@@ -345,7 +335,7 @@
   <div class="section" data-section="weapons">
     <div class="section-header"><div class="section-title">💣 Weapons & Items</div><div class="section-count"></div><div class="section-line"></div></div>
     <div class="tags">
-      <span class="tag">bomb</span><span class="tag">bombSticky</span><span class="tag">impactBomb</span><span class="tag">landMine</span><span class="tag">tnt</span><span class="tag">shield</span><span class="tag">puck</span><span class="tag">egg</span><span class="tag">powerup</span><span class="tag">powerupSimple</span><span class="tag">flagPole</span><span class="tag">flagStand</span><span class="tag">shrapnel1</span><span class="tag">shrapnelBoard</span><span class="tag">shrapnelSlime</span><span class="tag">shockWave</span><span class="tag">scorch</span>
+      <span class="tag">bomb</span><span class="tag">bombSticky</span><span class="tag">impactBomb</span><span class="tag">landMine</span><span class="tag">tnt</span><span class="tag">shield</span><span class="tag">puck</span><span class="tag">egg</span><span class="tag">powerup</span><span class="tag">powerupSimple</span><span class="tag">flagPole</span><span class="tag">flagStand</span><span class="tag">shrapnel1</span><span class="tag">shrapnelBoard</span><span class="tag">shrapnelSlime</span>
     </div>
   </div>
 
@@ -401,16 +391,15 @@
   <div class="section" data-section="misc">
     <div class="section-header"><div class="section-title">⚙️ Misc / System</div><div class="section-count"></div><div class="section-line"></div></div>
     <div class="tags">
-      <span class="tag">box</span><span class="tag">cylinder</span><span class="tag">puck</span><span class="tag">trees</span><span class="tag">egg</span>
+      <span class="tag">box</span><span class="tag">cylinder</span>
     </div>
   </div>
 
   <div class="no-results" id="noResults">NO MESHES FOUND</div>
 </main>
 
-<div class="toast" id="toast">COPIED!</div>
 <footer>
-  <div style="text-align: center; margin-top: 0.4rem; color: var(--accent2);">MADE BY: @chrosticey</div>
+  <div style="text-align: center; margin-top: 0.4rem; color: var(--accent2);">MADE BY: @vishyyy338 & @chrosticey</div>
 </footer>
 
 <script>
@@ -423,14 +412,15 @@
   document.getElementById('totalCount').textContent = allTags.length;
   document.getElementById('visibleCount').textContent = allTags.length;
 
-  const toast = document.getElementById('toast');
-  let timer;
+  function toSnakeCase(str) {
+    return str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+  }
+
   allTags.forEach(tag => {
     tag.addEventListener('click', () => {
-      navigator.clipboard.writeText(tag.textContent).catch(()=>{});
-      clearTimeout(timer);
-      toast.classList.add('show');
-      timer = setTimeout(() => toast.classList.remove('show'), 1200);
+      const rawName = tag.textContent.trim();
+      const fileName = toSnakeCase(rawName) + '.obj';
+      window.location.href = 'mesh_viewer.html?model=' + encodeURIComponent(fileName);
     });
   });
 

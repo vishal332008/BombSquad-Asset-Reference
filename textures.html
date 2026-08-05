@@ -384,7 +384,7 @@
 <header>
   <a href="index.html" class="home-link">← INDEX</a>
   <h1>BombSquad Textures</h1>
-  <p>CLICK ANY TAG TO COPY - BOMBSQUAD 1.7.62</p>
+  <p>CLICK ANY TAG TO COPY THE TEXT - BOMBSQUAD 1.8.0</p>
   <div class="stats">
     <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total Textures</div></div>
     <div class="stat"><div class="stat-num" id="catCount">22</div><div class="stat-label">Categories</div></div>
@@ -541,7 +541,7 @@
       <div class="section-line"></div>
     </div>
     <div class="tags">
-      <span class="tag">uiAtlas</span><span class="tag">uiAtlas2</span><span class="tag">menuBG</span><span class="tag">menuButton</span><span class="tag">menuIcon</span><span class="tag">backIcon</span><span class="tag">upButton</span><span class="tag">downButton</span><span class="tag">leftButton</span><span class="tag">rightButton</span><span class="tag">plusButton</span><span class="tag">startButton</span><span class="tag">scrollWidget</span><span class="tag">scrollWidgetGlow</span><span class="tag">buttonSquare</span><span class="tag">buttonSquareWide</span><span class="tag">buttonBomb</span><span class="tag">buttonJump</span><span class="tag">buttonPickUp</span><span class="tag">buttonPunch</span><span class="tag">pageLeftRight</span><span class="tag">frameInset</span><span class="tag">windowHSmallVMed</span><span class="tag">windowHSmallVSmall</span><span class="tag">windowBottomCap</span><span class="tag">textClearButton</span><span class="tag">touchArrows</span><span class="tag">touchArrowsActions</span><span class="tag">actionButtons</span><span class="tag">analogStick</span><span class="tag">cursor</span><span class="tag">lock</span><span class="tag">quoteBubble</span><span class="tag">vrFillMound</span>
+      <span class="tag">uiAtlas</span><span class="tag">uiAtlas2</span><span class="tag">menuBG</span><span class="tag">menuButton</span><span class="tag">menuIcon</span><span class="tag">backIcon</span><span class="tag">upButton</span><span class="tag">downButton</span><span class="tag">leftButton</span><span class="tag">rightButton</span><span class="tag">plusButton</span><span class="tag">startButton</span><span class="tag">scrollWidget</span><span class="tag">scrollWidgetGlow</span><span class="tag">buttonSquare</span><span class="tag">buttonSquareWide</span><span class="tag">bombButton</span><span class="tag">buttonBomb</span><span class="tag">buttonJump</span><span class="tag">buttonPickUp</span><span class="tag">buttonPunch</span><span class="tag">pageLeftRight</span><span class="tag">frameInset</span><span class="tag">windowHSmallVMed</span><span class="tag">windowHSmallVSmall</span><span class="tag">windowBottomCap</span><span class="tag">textClearButton</span><span class="tag">touchArrows</span><span class="tag">touchArrowsActions</span><span class="tag">actionButtons</span><span class="tag">analogStick</span><span class="tag">cursor</span><span class="tag">lock</span><span class="tag">quoteBubble</span><span class="tag">vrFillMound</span>
     </div>
   </div>
 
@@ -563,7 +563,7 @@
       <div class="section-line"></div>
     </div>
     <div class="tags">
-      <span class="tag">medalGold</span><span class="tag">medalSilver</span><span class="tag">medalBronze</span><span class="tag">medalComplete</span><span class="tag">trophy</span><span class="tag">star</span><span class="tag">coin</span><span class="tag">goldPass</span>
+      <span class="tag">medalGold</span><span class="tag">medalSilver</span><span class="tag">medalBronze</span><span class="tag">medalComplete</span><span class="tag">trophy</span><span class="tag">coin</span><span class="tag">goldPass</span>
     </div>
   </div>
 
@@ -640,7 +640,7 @@
       <div class="section-line"></div>
     </div>
     <div class="tags">
-      <span class="tag">white</span><span class="tag">black</span><span class="tag">null</span><span class="tag">empty</span><span class="tag">bg</span><span class="tag">tv</span><span class="tag">file</span><span class="tag">folder</span><span class="tag">puckColor</span><span class="tag">eyeColor</span><span class="tag">meter</span><span class="tag">wings</span><span class="tag">bigG</span><span class="tag">cuteSpaz</span><span class="tag">kronk</span>
+      <span class="tag">white</span><span class="tag">black</span><span class="tag">null</span><span class="tag">empty</span><span class="tag">bg</span><span class="tag">tv</span><span class="tag">file</span><span class="tag">folder</span><span class="tag">puckColor</span><span class="tag">eyeColor</span><span class="tag">meter</span><span class="tag">wings</span><span class="tag">bigG</span>
     </div>
   </div>
 
@@ -650,11 +650,10 @@
 <div class="toast" id="toast">COPIED!</div>
 
 <footer>
-  <div style="text-align: center; margin-top: 0.4rem; color: var(--accent2);">MADE BY: @chrosticey</div>
+  <div style="text-align: center; margin-top: 0.4rem; color: var(--accent2);">MADE BY: @vishyyy338 & @chrosticey</div>
 </footer>
 
 <script>
-  // Count tags and update section counts
   document.querySelectorAll('.section').forEach(sec => {
     const tags = sec.querySelectorAll('.tag');
     const countEl = sec.querySelector('.section-count');
@@ -667,7 +666,6 @@
   totalCount.textContent = allTags.length;
   visibleCount.textContent = allTags.length;
 
-  // Copy on click
   const toast = document.getElementById('toast');
   let toastTimer;
   allTags.forEach(tag => {
@@ -679,7 +677,6 @@
     });
   });
 
-  // Search
   const search = document.getElementById('search');
   const noResults = document.getElementById('noResults');
   const sections = document.querySelectorAll('.section');
@@ -727,11 +724,8 @@ function toFileName(name) {
   if (name.startsWith("reflection")) {
     const dir = name.slice(-2);
 
-    // FIX: remove "_+x" instead of just "+x"
     let base = name.replace(/_([+-][xyz])$/i, "");
-
     base = base.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
-
     const face = dir.replace("+", "p").replace("-", "n").toLowerCase();
 
     return base + ".cubemap/" + face + ".png";
@@ -741,7 +735,6 @@ function toFileName(name) {
     .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
     .toLowerCase() + ".png";
 }
-
 
 document.querySelectorAll(".tag").forEach(tag => {
 
@@ -753,21 +746,20 @@ document.querySelectorAll(".tag").forEach(tag => {
 
   tag.addEventListener("mousemove", e => {
     const padding = 15;
-
     const imgRect = previewImg.getBoundingClientRect();
-      let x = e.clientX + padding;
-      let y = e.clientY + padding;
+    let x = e.clientX + padding;
+    let y = e.clientY + padding;
 
-      if ((x + imgRect.width) > window.innerWidth) {
-        x = e.clientX - imgRect.width - padding;
-      }
+    if ((x + imgRect.width) > window.innerWidth) {
+      x = e.clientX - imgRect.width - padding;
+    }
 
-      if ((y + imgRect.height) > window.innerHeight) {
-        y = e.clientY - imgRect.height - padding;
-      }
+    if ((y + imgRect.height) > window.innerHeight) {
+      y = e.clientY - imgRect.height - padding;
+    }
 
-      preview.style.left = x + "px";
-      preview.style.top = y + "px";
+    preview.style.left = x + "px";
+    preview.style.top = y + "px";
   });
 
   tag.addEventListener("mouseleave", () => {
