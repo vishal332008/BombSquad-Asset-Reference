@@ -13,8 +13,8 @@
       --text: #d0d8e8;
       --accent: #00b4ff;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      margin: 0;
       overflow: hidden;
       background: var(--bg);
       color: var(--text);
@@ -66,6 +66,7 @@
       border-color: var(--accent);
       transform: translateY(-2px);
     }
+
     #meshLabel {
       position: fixed;
       top: 15px;
@@ -86,6 +87,7 @@
       line-height: 1.4;
       word-break: break-word;
     }
+
     #texFloatLabel {
       position: fixed;
       z-index: 25;
@@ -104,7 +106,6 @@
       display: none;
     }
 
-    /* Collapsible UI Panel */
     #ui-panel {
       position: fixed;
       top: 65px;
@@ -116,53 +117,62 @@
       align-items: flex-start;
     }
 
-    #settingsToggle {
+    .menu-toggle {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      background: rgba(0, 180, 255, 0.1);
-      border: 1px solid rgba(0, 180, 255, 0.4);
-      padding: 0.5rem 0.8rem;
+      letter-spacing: 0.12em;
+      padding: 0.4rem 0.6rem;
       cursor: pointer;
       transition: all 0.2s ease;
       backdrop-filter: blur(4px);
-    }
-    #settingsToggle:hover {
-      background: rgba(0, 180, 255, 0.2);
-      border-color: var(--accent);
-    }
-    #settingsToggle.active {
-      background: var(--accent);
-      color: #000;
-      box-shadow: 0 0 10px rgba(0,180,255,0.4);
+      text-transform: uppercase;
+      width: auto;
+      text-align: left;
     }
 
-    #settings {
+    #settingsToggle {
+      color: var(--accent);
+      background: rgba(0, 180, 255, 0.1);
+      border: 1px solid rgba(0, 180, 255, 0.4);
+    }
+    #settingsToggle:hover { background: rgba(0, 180, 255, 0.2); border-color: var(--accent); }
+    #settingsToggle.active { background: var(--accent); color: #000; box-shadow: 0 0 10px rgba(0,180,255,0.4); }
+
+    #textureToggle {
+      color: #ff9900;
+      background: rgba(255, 153, 0, 0.1);
+      border: 1px solid rgba(255, 153, 0, 0.4);
+    }
+    #textureToggle:hover { background: rgba(255, 153, 0, 0.2); border-color: #ff9900; }
+    #textureToggle.active { background: #ff9900; color: #000; box-shadow: 0 0 10px rgba(255,153,0,0.4); }
+
+    .dropdown-panel {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      transform-origin: top left;
-      opacity: 1;
-      transform: translateY(0);
-      background: rgba(8, 12, 16, 0.6);
+      background: rgba(8, 12, 16, 0.75);
       padding: 10px;
       border: 1px solid var(--border);
       backdrop-filter: blur(8px);
-    }
-    #settings.hidden {
+      width: 180px;
+      max-height: 0;
       opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-      height: 0;
       overflow: hidden;
-      padding: 0;
-      border: none;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-width: 0px;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, padding 0.3s ease, border-width 0.3s ease;
     }
 
-    #settings button {
+    .dropdown-panel.open {
+      max-height: 320px;
+      opacity: 1;
+      padding: 10px;
+      border-width: 1px;
+    }
+
+    .dropdown-panel button, #texSearch {
       font-family: 'Orbitron', sans-serif;
       font-size: 0.65rem;
       font-weight: 700;
@@ -173,9 +183,10 @@
       transition: all 0.15s ease;
       width: 100%;
       text-align: left;
+      box-sizing: border-box;
+      outline: none;
     }
 
-    /* Button Color Themes */
     #wireBtn { color: #00ffcc; border: 1px solid #00ffcc44; background: #00ffcc10; }
     #wireBtn:hover { background: #00ffcc22; border-color: #00ffcc; transform: translateX(2px); }
     #wireBtn.active { background: #00ffcc; color: #000; border-color: #00ffcc; box-shadow: 0 0 10px rgba(0,255,204,0.4); }
@@ -199,132 +210,61 @@
     #resetBtn { color: #ff3355; border: 1px solid #ff335544; background: #ff335510; margin-top: 5px; }
     #resetBtn:hover { background: #ff335522; border-color: #ff3355; transform: translateX(2px); }
     #resetBtn:active { background: #ff3355; color: #000; transform: translateX(0); }
-    #textureToggle {
-font-family: 'Orbitron', sans-serif;
-font-size: 0.7rem;
-font-weight: 700;
-letter-spacing: 0.15em;
-color: #ff9900;
-background: rgba(255, 153, 0, 0.1);
-border: 1px solid rgba(255, 153, 0, 0.4);
-padding: 0.5rem 0.8rem;
-cursor: pointer;
-transition: all 0.2s ease;
-backdrop-filter: blur(4px);
-}
-#textureToggle:hover {
-background: rgba(255, 153, 0, 0.2);
-border-color: #ff9900;
-}
-#textureToggle.active {
-background: #ff9900;
-color: #000;
-box-shadow: 0 0 10px rgba(255,153,0,0.4);
-}
-#texturePanel {
-display: flex;
-flex-direction: column;
-gap: 8px;
-transition: opacity 0.3s ease, transform 0.3s ease;
-transform-origin: top left;
-opacity: 1;
-transform: translateY(0);
-background: rgba(8, 12, 16, 0.6);
-padding: 10px;
-border: 1px solid var(--border);
-backdrop-filter: blur(8px);
-width: 180px;
-}
-#texturePanel.hidden {
-opacity: 0;
-transform: translateY(-10px);
-pointer-events: none;
-height: 0;
-overflow: hidden;
-padding: 0;
-border: none;
-}
-#texSelect {
-font-family: 'Orbitron', sans-serif;
-font-size: 0.65rem;
-padding: 0.4rem;
-background: #ff990010;
-color: #ff9900;
-border: 1px solid #ff990044;
-width: 100%;
-}
-#texUploadBtn {
-font-family: 'Orbitron', sans-serif;
-font-size: 0.65rem;
-font-weight: 700;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-padding: 0.4rem 0.8rem;
-cursor: pointer;
-transition: all 0.15s ease;
-width: 100%;
-box-sizing: border-box;
-text-align: left;
-color: #ff9900;
-border: 1px solid #ff990044;
-background: #ff990010;
-}
-#texUploadBtn:hover {
-background: #ff990022;
-border-color: #ff9900;
-transform: translateX(2px);
-}
-#texSearch {
-font-family: 'Orbitron', sans-serif;
-font-size: 0.65rem;
-padding: 0.4rem;
-background: #ff990010;
-color: #ff9900;
-border: 1px solid #ff990044;
-width: 100%;
-outline: none;
-box-sizing: border-box;
-}
-#texSearch:focus {
-border-color: #ff9900;
-}
-#texResults {
-display: flex;
-flex-direction: column;
-gap: 2px;
-max-height: 200px;
-overflow-y: auto;
-}
-#texResults .tex-item {
-font-family: 'Rajdhani', sans-serif;
-font-size: 0.75rem;
-padding: 0.3rem 0.5rem;
-cursor: pointer;
-color: var(--text);
-border: 1px solid transparent;
-}
-#texResults .tex-item:hover {
-background: #ff990022;
-border-color: #ff990044;
-}
-#texResults .tex-item.active {
-background: #ff9900;
-color: #000;
-}
 
-    /* Loading UI */
+    #texSearch {
+      background: #ff990010;
+      color: #ff9900;
+      border: 1px solid #ff990044;
+    }
+    #texSearch:focus { border-color: #ff9900; }
+
+    #texUploadBtn {
+      color: #ff9900;
+      border: 1px solid #ff990044;
+      background: #ff990010;
+    }
+    #texUploadBtn:hover { background: #ff990022; border-color: #ff9900; transform: translateX(2px); }
+
+    #texResults {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+    #texResults .tex-item {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.5rem;
+      cursor: pointer;
+      color: var(--text);
+      border: 1px solid transparent;
+    }
+    #texResults .tex-item:hover {
+      background: #ff990022;
+      border-color: #ff990044;
+    }
+    #texResults .tex-item.active {
+      background: #ff9900;
+      color: #000;
+    }
+
     #status {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 250px;
+      width: 320px;
       text-align: center;
       font-family: 'Orbitron', sans-serif;
       font-size: 0.85rem;
       color: var(--accent);
       letter-spacing: 0.1em;
       z-index: 10;
+      background: rgba(8, 12, 16, 0.85);
+      border: 1px solid var(--border);
+      padding: 20px;
+      backdrop-filter: blur(8px);
     }
     #progress-container {
       width: 100%;
@@ -342,11 +282,7 @@ color: #000;
       transition: width 0.1s linear;
     }
 
-    canvas {
-      display: block;
-      position: relative;
-      z-index: 5;
-    }
+    canvas { display: block; position: relative; z-index: 5; }
   </style>
 </head>
 <body>
@@ -359,25 +295,25 @@ color: #000;
     DRAG = ROTATE • SCROLL = ZOOM • RIGHT CLICK = PAN
   </div>
 
-  <div id="ui-panel">
- <button id="settingsToggle">⚙️ SETTINGS</button>
- <div id="settings" class="hidden">
-  <button id="wireBtn">Wireframe</button>
-  <button id="flatBtn">Flat Shading</button>
-  <button id="lightBtn">Sharp Light</button>
-  <button id="shadowBtn">Shadows</button>
-  <button id="gridBtn" class="active">Grid</button>
-  <button id="resetBtn">Reset View</button>
- </div>
+  <div id="ui-panel" style="display: none;" id="uiPanelContainer">
+    <button id="settingsToggle" class="menu-toggle">⚙️ SETTINGS</button>
+    <div id="settings" class="dropdown-panel">
+      <button id="wireBtn">Wireframe</button>
+      <button id="flatBtn">Flat Shading</button>
+      <button id="lightBtn">Sharp Light</button>
+      <button id="shadowBtn">Shadows</button>
+      <button id="gridBtn" class="active">Grid</button>
+      <button id="resetBtn">Reset View</button>
+    </div>
 
- <button id="textureToggle">🎨 TEXTURE</button>
- <div id="texturePanel" class="hidden">
-  <input type="text" id="texSearch" placeholder="Search textures..." autocomplete="off">
-  <div id="texResults"></div>
-  <button id="texUploadBtn">Upload Texture</button>
-  <input type="file" id="texUpload" accept=".png,image/png" style="display:none">
- </div>
-</div>
+    <button id="textureToggle" class="menu-toggle">🎨 TEXTURE</button>
+    <div id="texturePanel" class="dropdown-panel">
+      <input type="text" id="texSearch" placeholder="Search..." autocomplete="off">
+      <div id="texResults"></div>
+      <button id="texUploadBtn">Upload</button>
+      <input type="file" id="texUpload" accept=".png,image/png" style="display:none">
+    </div>
+  </div>
 
   <div id="status">
     <div id="progress-text">INITIALIZING...</div>
@@ -387,9 +323,25 @@ color: #000;
   </div>
 
   <script type="module">
+    if (window.location.pathname.endsWith('.html')) {
+      window.history.replaceState({}, document.title, window.location.pathname.replace('.html', '') + window.location.search);
+    }
+
     import * as THREE from "https://esm.sh/three@0.158.0";
     import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js";
     import { OBJLoader } from "https://esm.sh/three@0.158.0/examples/jsm/loaders/OBJLoader.js";
+
+    const params = new URLSearchParams(location.search);
+    const modelName = params.get("model");
+    const texName = params.get("tex");
+
+    if (!modelName) {
+      document.getElementById("progress-text").innerHTML = "<span style='color:#ff3355'>NO MODEL SPECIFIED</span><br><span style='font-size: 0.65rem; color: #8899aa; margin-top: 8px; display: block;'>Please select a mesh from the reference list.</span>";
+      document.getElementById("progress-container").style.display = "none";
+      throw new Error("Missing model");
+    }
+
+    document.getElementById("ui-panel").style.display = "flex";
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x080c10);
@@ -401,7 +353,8 @@ color: #000;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMap.enabled = true; 
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace; 
     document.body.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -442,15 +395,12 @@ color: #000;
     let initialCameraPos = new THREE.Vector3();
     let initialTarget = new THREE.Vector3();
 
-    const params = new URLSearchParams(location.search);
-    const modelName = params.get("model");
     const meshLabel = document.getElementById("meshLabel");
     const texFloatLabel = document.getElementById("texFloatLabel");
-    const displayName = modelName.replace(/\.obj$/i, "");
     let currentTexLabelText = null;
     let meshTopWorldPos = null;
 
-    meshLabel.textContent = displayName;
+    meshLabel.textContent = modelName.replace(/\.obj$/i, "");
 
     function updateLabel(textureName) {
       currentTexLabelText = textureName;
@@ -466,25 +416,22 @@ color: #000;
       if (!currentTexLabelText || !meshTopWorldPos) return;
       const vector = meshTopWorldPos.clone();
       vector.project(camera);
-      const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
-      const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
-      texFloatLabel.style.left = x + "px";
-      texFloatLabel.style.top = y + "px";
+      texFloatLabel.style.left = ((vector.x * 0.5 + 0.5) * window.innerWidth) + "px";
+      texFloatLabel.style.top = ((-vector.y * 0.5 + 0.5) * window.innerHeight) + "px";
     }
 
-    if (!modelName) {
-      document.getElementById("progress-text").innerHTML = "<span style='color:#ff3355'>NO MODEL SPECIFIED</span>";
-      document.getElementById("progress-container").style.display = "none";
-      throw new Error("Missing model");
-    }
+    let textureNames = [];
+    fetch('texture_files/textures.json')
+      .then(res => res.json())
+      .then(data => { textureNames = data; })
+      .catch(err => console.error(err));
 
     const loader = new OBJLoader();
 
     loader.load(
-      "meshes/" + modelName,
+      "mesh_files/" + modelName,
       (object) => {
         let meshFound = false;
-
         object.traverse(child => {
           if (child.isMesh) {
             meshFound = true;
@@ -524,31 +471,21 @@ color: #000;
         sunLight.shadow.camera.updateProjectionMatrix();
 
         const gridSize = radius * 10;
-        const gridDivisions = 50;
-        const gridHelper = new THREE.GridHelper(gridSize, gridDivisions, 0x00b4ff, 0x1a2030);
-        gridHelper.position.y = box.min.y;
-        gridHelper.position.x = center.x;
-        gridHelper.position.z = center.z;
-        gridHelper.visible = true; 
+        const gridHelper = new THREE.GridHelper(gridSize, 50, 0x00b4ff, 0x1a2030);
+        gridHelper.position.set(center.x, box.min.y, center.z);
         scene.add(gridHelper);
         gridHelperRef = gridHelper;
 
-        const planeGeo = new THREE.PlaneGeometry(gridSize, gridSize);
-        const planeMat = new THREE.ShadowMaterial({ opacity: 0.6 }); 
-        const shadowPlane = new THREE.Mesh(planeGeo, planeMat);
+        const shadowPlane = new THREE.Mesh(new THREE.PlaneGeometry(gridSize, gridSize), new THREE.ShadowMaterial({ opacity: 0.6 }));
         shadowPlane.rotation.x = -Math.PI / 2;
-        shadowPlane.position.y = box.min.y - 0.01;
-        shadowPlane.position.x = center.x;
-        shadowPlane.position.z = center.z;
+        shadowPlane.position.set(center.x, box.min.y - 0.01, center.z);
         shadowPlane.receiveShadow = true;
         shadowPlane.visible = false; 
         scene.add(shadowPlane);
         shadowPlaneRef = shadowPlane;
 
         controls.target.copy(center);
-        const fov = camera.fov * Math.PI / 180;
-        let distance = radius / Math.sin(fov / 2);
-        distance *= 1.35;
+        let distance = (radius / Math.sin((camera.fov * Math.PI / 180) / 2)) * 1.35;
         camera.position.copy(center.clone().add(new THREE.Vector3(distance, distance * 0.8, distance)));
         camera.lookAt(center);
 
@@ -560,74 +497,70 @@ color: #000;
         initialTarget.copy(controls.target);
 
         document.getElementById("status").remove();
+
+        if (texName) {
+          applyTexture("texture_files/" + toFileName(texName), texName);
+        }
       },
       (progress) => {
         if (progress.total) {
-          const percent = (progress.loaded / progress.total) * 100;
-          document.getElementById("progress-text").innerText = "LOADING " + percent.toFixed(0) + "%";
-          document.getElementById("progress-bar").style.width = percent + "%";
+          const p = (progress.loaded / progress.total) * 100;
+          document.getElementById("progress-text").innerText = "LOADING " + p.toFixed(0) + "%";
+          document.getElementById("progress-bar").style.width = p + "%";
         }
       },
       (error) => {
         console.error(error);
         document.getElementById("progress-text").innerHTML = "<span style='color:#ff3355'>FAILED LOADING MODEL</span>";
-        document.getElementById("progress-bar").style.background = "#ff3355";
       }
     );
 
-    document.getElementById("settingsToggle").onclick = function() {
-      const menu = document.getElementById("settings");
-      menu.classList.toggle("hidden");
-      this.classList.toggle("active");
-    };
+    function toggleMenu(activeId, inactiveId) {
+      const activePanel = document.getElementById(activeId);
+      const activeBtn = document.getElementById(activeId.replace('Panel', 'Toggle'));
+      const inactivePanel = document.getElementById(inactiveId);
+      const inactiveBtn = document.getElementById(inactiveId.replace('Panel', 'Toggle'));
+
+      inactivePanel.classList.remove('open');
+      inactiveBtn.classList.remove('active');
+
+      activePanel.classList.toggle('open');
+      activeBtn.classList.toggle('active');
+    }
+
+    document.getElementById("settingsToggle").onclick = () => toggleMenu('settings', 'texturePanel');
+    document.getElementById("textureToggle").onclick = () => toggleMenu('texturePanel', 'settings');
 
     document.getElementById("wireBtn").onclick = function() {
       wireframeEnabled = !wireframeEnabled;
       this.classList.toggle("active", wireframeEnabled);
-      meshes.forEach(mesh => {
-        mesh.material.wireframe = wireframeEnabled;
-      });
+      meshes.forEach(m => m.material.wireframe = wireframeEnabled);
     };
 
     document.getElementById("flatBtn").onclick = function() {
       flatEnabled = !flatEnabled;
       this.classList.toggle("active", flatEnabled);
-      meshes.forEach(mesh => {
-        mesh.material.flatShading = flatEnabled;
-        mesh.material.needsUpdate = true;
-      });
+      meshes.forEach(m => { m.material.flatShading = flatEnabled; m.material.needsUpdate = true; });
     };
 
     document.getElementById("lightBtn").onclick = function() {
       sharpLight = !sharpLight;
       this.classList.toggle("active", sharpLight);
-      if (sharpLight) {
-        sunLight.intensity = 2.5;
-        headLight.intensity = 1.8;
-        ambient.intensity = 0.15;
-        fillLight.intensity = 0.5;
-      } else {
-        sunLight.intensity = 1.5;
-        headLight.intensity = 1.2;
-        ambient.intensity = 0.35;
-        fillLight.intensity = 0.5;
-      }
+      sunLight.intensity = sharpLight ? 2.5 : 1.5;
+      headLight.intensity = sharpLight ? 1.8 : 1.2;
+      ambient.intensity = sharpLight ? 0.15 : 0.35;
     };
 
     document.getElementById("shadowBtn").onclick = function() {
       shadowsEnabled = !shadowsEnabled;
       this.classList.toggle("active", shadowsEnabled);
-      if (shadowPlaneRef) {
-        shadowPlaneRef.visible = shadowsEnabled;
-      }
+      if (shadowPlaneRef) shadowPlaneRef.visible = shadowsEnabled;
     };
 
     document.getElementById("gridBtn").onclick = function() {
       gridEnabled = !gridEnabled;
       this.classList.toggle("active", gridEnabled);
-      if (gridHelperRef) {
-        gridHelperRef.visible = gridEnabled;
-      }
+      if (gridHelperRef) gridHelperRef.visible = gridEnabled;
     };
 
     document.getElementById("resetBtn").onclick = () => {
@@ -636,66 +569,32 @@ color: #000;
       controls.update();
     };
 
-    document.getElementById("textureToggle").onclick = function() {
-      const menu = document.getElementById("texturePanel");
-      menu.classList.toggle("hidden");
-      this.classList.toggle("active");
-    };
-
     const textureLoader = new THREE.TextureLoader();
-
-    const textureNames = [
-      "flagColor","flagPoleColor",
-      "kronk","neoSpazColor","melColor","zoeColor","jackColor","ninjaColor","cyborgColor","frostyColor","bearColor","cowboyColor","alienColor","bonesColor","bunnyColor","robotColor","penguinColor","jumpsuitColor","warriorColor","witchColor","gladiatorColor","superheroColor","actionHeroColor","assassinColor","operaSingerColor","oldLadyColor","agentColor","pixieColor","wrestlerColor","aliColor","santaColor","wizardColor",
-      "kronkIcon","ninjaIcon","cyborgIcon","frostyIcon","bearIcon","cowboyIcon","alienIcon","bonesIcon","bunnyIcon","robotIcon","penguinIcon","jumpsuitIcon","warriorIcon","witchIcon","gladiatorIcon","superheroIcon","actionHeroIcon","assassinIcon","operaSingerIcon","oldLadyIcon","agentIcon","pixieIcon","wrestlerIcon","aliIcon","santaIcon","wizardIcon","melIcon","zoeIcon","jackIcon","neoSpazIcon","cuteSpaz",
-      "kronkColorMask","ninjaColorMask","cyborgColorMask","frostyColorMask","bearColorMask","cowboyColorMask","alienColorMask","bonesColorMask","bunnyColorMask","robotColorMask","penguinColorMask","jumpsuitColorMask","warriorColorMask","witchColorMask","gladiatorColorMask","superheroColorMask","actionHeroColorMask","assassinColorMask","operaSingerColorMask","oldLadyColorMask","agentColorMask","pixieColorMask","wrestlerColorMask","aliColorMask","santaColorMask","wizardColorMask","melColorMask","zoeColorMask","jackColorMask","neoSpazColorMask","frostyIconColorMask","kronkIconColorMask","ninjaIconColorMask","cyborgIconColorMask","bearIconColorMask","cowboyIconColorMask","alienIconColorMask","bonesIconColorMask","bunnyIconColorMask","robotIconColorMask","penguinIconColorMask","jumpsuitIconColorMask","warriorIconColorMask","witchIconColorMask","gladiatorIconColorMask","superheroIconColorMask","actionHeroIconColorMask","assassinIconColorMask","operaSingerIconColorMask","oldLadyIconColorMask","agentIconColorMask","pixieIconColorMask","wrestlerIconColorMask","aliIconColorMask","santaIconColorMask","wizardIconColorMask","melIconColorMask","zoeIconColorMask","jackIconColorMask","neoSpazIconColorMask","characterIconMask","eyeColorTintMask",
-      "bombColor","bombColorIce","bombStickyColor","impactBombColor","impactBombColorLit","landMine","landMineLit","tnt","boxingGlovesColor","shrapnel1Color","fuse",
-      "powerupHealth","powerupSpeed","powerupPunch","powerupBomb","powerupShield","powerupLandMines","powerupImpactBombs","powerupStickyBombs","powerupIceBombs","powerupCurse","shield",
-      "achievementFootballShutout","achievementFootballVictory","achievementWall","achievementFreeLoader","achievementRunaround","achievementOnslaught","achievementTNT","achievementOffYouGo","achievementCrossHair","achievementFlawlessVictory","achievementMedalLarge","achievementMedalMedium","achievementMedalSmall","achievementEmpty","achievementOutline","achievementGotTheMoves","achievementDualWielding","achievementInControl","achievementStayinAlive","achievementTeamPlayer","achievementBoxer","achievementSuperPunch","achievementSharingIsCaring","achievementMine","achievementsIcon",
-      "stepRightUpLevelColor","monkeyFaceLevelColor","courtyardLevelColor","tipTopLevelColor","alwaysLandLevelColor","roundaboutLevelColor","zigZagLevelColor","rampageLevelColor","doomShroomLevelColor","towerDLevelColor","bridgitLevelColor","cragCastleLevelColor","thePadLevelColor","natureBackgroundColor",
-      "stepRightUpPreview","monkeyFacePreview","courtyardPreview","tipTopPreview","alwaysLandPreview","roundaboutPreview","zigzagPreview","rampagePreview","doomShroomPreview","towerDPreview","bridgitPreview","cragCastlePreview","thePadPreview","bigGPreview","hockeyStadiumPreview","footballStadiumPreview","lakeFrigidPreview","mapPreviewMask",
-      "rampageBGColor","rampageBGColor2","doomShroomBGColor","alwaysLandBGColor","tipTopBGColor","lakeFrigid","lakeFrigidReflections","footballStadium","hockeyStadium","treesColor",
-      "explosion","smoke","sparks","glow","scorch","scorchBig","slash","light","lightSharp","lightSoft","shadow","shadowSharp","shadowSoft","circleShadow","rgbStripes","clayStroke",
-      "circle","circleNoAlpha","circleOutline","circleOutlineNoAlpha","circleSoft","circleZigZag","softRect","softRect2","softRectVertical","bar","nub","crossOut","crossOutMask","star","heart","arrow",
-      "uiAtlas","uiAtlas2","menuBG","menuButton","menuIcon","backIcon","upButton","downButton","leftButton","rightButton","plusButton","startButton","scrollWidget","scrollWidgetGlow","buttonSquare","buttonSquareWide","bombButton","buttonBomb","buttonJump","buttonPickUp","buttonPunch","pageLeftRight","frameInset","windowHSmallVMed","windowHSmallVSmall","windowBottomCap","textClearButton","touchArrows","touchArrowsActions","actionButtons","analogStick","cursor","lock","quoteBubble","vrFillMound",
-      "ouyaAButton","ouyaOButton","ouyaUButton","ouyaYButton","controllerIcon","gameCenterIcon",
-      "medalGold","medalSilver","medalBronze","medalComplete","trophy","coin","goldPass",
-      "tickets","ticketsPurple","ticketsMore","ticketRoll","ticketRollBig","ticketRolls","tokens1","tokens2","tokens3","tokens4",
-      "egg1","egg2","egg3","egg4","eggTex1","eggTex2","eggTex3","logoEaster","storeCharacterEaster",
-      "storeIcon","storeCharacter","storeCharacterXmas","inventoryIcon","chestIcon","chestIconEmpty","chestIconMulti","chestIconTint","chestOpenIcon","chestOpenIconTint","levelIcon","nextLevelIcon","replayIcon","logIcon","settingsIcon","graphicsIcon","audioIcon","advancedIcon","usersButton","leaderboardsIcon","iconOnslaught","iconRunaround","googlePlayAchievementsIcon","googlePlayLeaderboardsIcon","googlePlayGamesIcon","googlePlusIcon","googlePlusSignInButton","discordIcon","discordLogo","discordServer","githubLogo","ouyaIcon","merch","logo","aliSplash","playerLineup","multiplayerExamples",
-      "fontBig","fontSmall0","fontSmall1","fontSmall2","fontSmall3","fontSmall4","fontSmall5","fontSmall6","fontSmall7","fontExtras","fontExtras2","fontExtras3","fontExtras4","fontExtras5","chTitleChar1","chTitleChar2","chTitleChar3","chTitleChar4","chTitleChar5",
-      "spinner","spinner0","spinner1","spinner2","spinner3","spinner4","spinner5","spinner6","spinner7","spinner8","spinner9","spinner10","spinner11",
-      "white","black","null","empty","bg","tv","file","folder","puckColor","eyeColor","meter","wings","bigG",
-      "reflectionChar_+x","reflectionChar_-x","reflectionChar_+y","reflectionChar_-y","reflectionChar_+z","reflectionChar_-z","reflectionSharp_+x","reflectionSharp_-x","reflectionSharp_+y","reflectionSharp_-y","reflectionSharp_+z","reflectionSharp_-z","reflectionSharper_+x","reflectionSharper_-x","reflectionSharper_+y","reflectionSharper_-y","reflectionSharper_+z","reflectionSharper_-z","reflectionSharpest_+x","reflectionSharpest_-x","reflectionSharpest_+y","reflectionSharpest_-y","reflectionSharpest_+z","reflectionSharpest_-z","reflectionSoft_+x","reflectionSoft_-x","reflectionSoft_+y","reflectionSoft_-y","reflectionSoft_+z","reflectionSoft_-z","reflectionPowerup_+x","reflectionPowerup_-x","reflectionPowerup_+y","reflectionPowerup_-y","reflectionPowerup_+z","reflectionPowerup_-z"
-    ];
 
     function toFileName(name) {
       if (name.startsWith("reflection")) {
         const dir = name.slice(-2);
-        let base = name.replace(/_([+-][xyz])$/i, "");
-        base = base.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
-        const face = dir.replace("+", "p").replace("-", "n").toLowerCase();
-        return base + ".cubemap/" + face + ".png";
+        let base = name.replace(/_([+-][xyz])$/i, "").replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
+        return base + ".cubemap/" + dir.replace("+", "p").replace("-", "n").toLowerCase() + ".png";
       }
       return name.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toLowerCase() + ".png";
     }
-    
+
     const texSearch = document.getElementById("texSearch");
     const texResults = document.getElementById("texResults");
 
     function renderResults(filter) {
       texResults.innerHTML = "";
       const q = filter.trim().toLowerCase();
-      const matches = textureNames.filter(n => n.toLowerCase().includes(q));
-      matches.slice(0, 40).forEach(name => {
+      textureNames.filter(n => n.toLowerCase().includes(q)).slice(0, 40).forEach(name => {
         const item = document.createElement("div");
         item.className = "tex-item";
         item.textContent = name;
         item.onclick = () => {
-          applyTexture("textures/" + toFileName(name), name);
+          applyTexture("texture_files/" + toFileName(name), name);
           document.querySelectorAll("#texResults .tex-item").forEach(el => el.classList.remove("active"));
           item.classList.add("active");
-          document.getElementById("texturePanel").classList.add("hidden");
+          document.getElementById("texturePanel").classList.remove("open");
           document.getElementById("textureToggle").classList.remove("active");
         };
         texResults.appendChild(item);
@@ -708,31 +607,21 @@ color: #000;
     function applyTexture(url, label) {
       textureLoader.load(url, (tex) => {
         tex.colorSpace = THREE.SRGBColorSpace;
-        meshes.forEach(mesh => {
-          mesh.material.map = tex;
-          mesh.material.color.set(0xffffff);
-          mesh.material.needsUpdate = true;
+        meshes.forEach(m => {
+          m.material.map = tex;
+          m.material.color.set(0xffffff);
+          m.material.needsUpdate = true;
         });
         updateLabel(label);
-      }, undefined, (err) => {
-        console.error("Texture failed to load:", err);
-        alert("Couldn't load that texture — check it exists in /textures");
       });
     }
 
-    document.getElementById("texUploadBtn").onclick = () =>
-      document.getElementById("texUpload").click();
-
+    document.getElementById("texUploadBtn").onclick = () => document.getElementById("texUpload").click();
     document.getElementById("texUpload").addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      if (file.type !== "image/png") {
-        alert("Only PNG files are supported. Please upload a .png image.");
-        e.target.value = "";
-        return;
-      }
       applyTexture(URL.createObjectURL(file), "custom");
-      document.getElementById("texturePanel").classList.add("hidden");
+      document.getElementById("texturePanel").classList.remove("open");
       document.getElementById("textureToggle").classList.remove("active");
     });
 
