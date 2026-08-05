@@ -66,6 +66,43 @@
       border-color: var(--accent);
       transform: translateY(-2px);
     }
+    #meshLabel {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      max-width: 45%;
+      z-index: 20;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(0, 180, 255, 0.08);
+      border: 1px solid #00b4ff33;
+      padding: 0.4rem 0.7rem;
+      backdrop-filter: blur(4px);
+      text-align: right;
+      pointer-events: none;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    #texFloatLabel {
+      position: fixed;
+      z-index: 25;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #ff9900;
+      background: rgba(8, 12, 16, 0.7);
+      border: 1px solid #ff990055;
+      padding: 0.3rem 0.7rem;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+      transform: translate(-50%, -100%);
+      white-space: nowrap;
+      display: none;
+    }
 
     /* Collapsible UI Panel */
     #ui-panel {
@@ -119,6 +156,10 @@
       opacity: 0;
       transform: translateY(-10px);
       pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      padding: 0;
+      border: none;
     }
 
     #settings button {
@@ -158,6 +199,118 @@
     #resetBtn { color: #ff3355; border: 1px solid #ff335544; background: #ff335510; margin-top: 5px; }
     #resetBtn:hover { background: #ff335522; border-color: #ff3355; transform: translateX(2px); }
     #resetBtn:active { background: #ff3355; color: #000; transform: translateX(0); }
+    #textureToggle {
+font-family: 'Orbitron', sans-serif;
+font-size: 0.7rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+color: #ff9900;
+background: rgba(255, 153, 0, 0.1);
+border: 1px solid rgba(255, 153, 0, 0.4);
+padding: 0.5rem 0.8rem;
+cursor: pointer;
+transition: all 0.2s ease;
+backdrop-filter: blur(4px);
+}
+#textureToggle:hover {
+background: rgba(255, 153, 0, 0.2);
+border-color: #ff9900;
+}
+#textureToggle.active {
+background: #ff9900;
+color: #000;
+box-shadow: 0 0 10px rgba(255,153,0,0.4);
+}
+#texturePanel {
+display: flex;
+flex-direction: column;
+gap: 8px;
+transition: opacity 0.3s ease, transform 0.3s ease;
+transform-origin: top left;
+opacity: 1;
+transform: translateY(0);
+background: rgba(8, 12, 16, 0.6);
+padding: 10px;
+border: 1px solid var(--border);
+backdrop-filter: blur(8px);
+width: 180px;
+}
+#texturePanel.hidden {
+opacity: 0;
+transform: translateY(-10px);
+pointer-events: none;
+height: 0;
+overflow: hidden;
+padding: 0;
+border: none;
+}
+#texSelect {
+font-family: 'Orbitron', sans-serif;
+font-size: 0.65rem;
+padding: 0.4rem;
+background: #ff990010;
+color: #ff9900;
+border: 1px solid #ff990044;
+width: 100%;
+}
+#texUploadBtn {
+font-family: 'Orbitron', sans-serif;
+font-size: 0.65rem;
+font-weight: 700;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 0.4rem 0.8rem;
+cursor: pointer;
+transition: all 0.15s ease;
+width: 100%;
+box-sizing: border-box;
+text-align: left;
+color: #ff9900;
+border: 1px solid #ff990044;
+background: #ff990010;
+}
+#texUploadBtn:hover {
+background: #ff990022;
+border-color: #ff9900;
+transform: translateX(2px);
+}
+#texSearch {
+font-family: 'Orbitron', sans-serif;
+font-size: 0.65rem;
+padding: 0.4rem;
+background: #ff990010;
+color: #ff9900;
+border: 1px solid #ff990044;
+width: 100%;
+outline: none;
+box-sizing: border-box;
+}
+#texSearch:focus {
+border-color: #ff9900;
+}
+#texResults {
+display: flex;
+flex-direction: column;
+gap: 2px;
+max-height: 200px;
+overflow-y: auto;
+}
+#texResults .tex-item {
+font-family: 'Rajdhani', sans-serif;
+font-size: 0.75rem;
+padding: 0.3rem 0.5rem;
+cursor: pointer;
+color: var(--text);
+border: 1px solid transparent;
+}
+#texResults .tex-item:hover {
+background: #ff990022;
+border-color: #ff990044;
+}
+#texResults .tex-item.active {
+background: #ff9900;
+color: #000;
+}
 
     /* Loading UI */
     #status {
@@ -199,23 +352,32 @@
 <body>
 
   <a href="meshes.html" id="backBtn">← BACK</a>
+  <div id="meshLabel"></div>
+  <div id="texFloatLabel"></div>
 
   <div id="info">
     DRAG = ROTATE • SCROLL = ZOOM • RIGHT CLICK = PAN
   </div>
 
   <div id="ui-panel">
-    <button id="settingsToggle">⚙️ SETTINGS</button>
-    
-    <div id="settings" class="hidden">
-      <button id="wireBtn">Wireframe</button>
-      <button id="flatBtn">Flat Shading</button>
-      <button id="lightBtn">Sharp Light</button>
-      <button id="shadowBtn">Shadows</button>
-      <button id="gridBtn" class="active">Grid</button>
-      <button id="resetBtn">Reset View</button>
-    </div>
-  </div>
+ <button id="settingsToggle">⚙️ SETTINGS</button>
+ <div id="settings" class="hidden">
+  <button id="wireBtn">Wireframe</button>
+  <button id="flatBtn">Flat Shading</button>
+  <button id="lightBtn">Sharp Light</button>
+  <button id="shadowBtn">Shadows</button>
+  <button id="gridBtn" class="active">Grid</button>
+  <button id="resetBtn">Reset View</button>
+ </div>
+
+ <button id="textureToggle">🎨 TEXTURE</button>
+ <div id="texturePanel" class="hidden">
+  <input type="text" id="texSearch" placeholder="Search textures..." autocomplete="off">
+  <div id="texResults"></div>
+  <button id="texUploadBtn">Upload Texture</button>
+  <input type="file" id="texUpload" accept=".png,image/png" style="display:none">
+ </div>
+</div>
 
   <div id="status">
     <div id="progress-text">INITIALIZING...</div>
@@ -225,12 +387,6 @@
   </div>
 
   <script type="module">
-    if (window.location.pathname.endsWith('.html')) {
-      const newPath = window.location.pathname.replace('.html', '');
-      const newUrl = newPath + window.location.search;
-      window.history.replaceState({}, document.title, newUrl);
-    }
-
     import * as THREE from "https://esm.sh/three@0.158.0";
     import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls.js";
     import { OBJLoader } from "https://esm.sh/three@0.158.0/examples/jsm/loaders/OBJLoader.js";
@@ -288,6 +444,33 @@
 
     const params = new URLSearchParams(location.search);
     const modelName = params.get("model");
+    const meshLabel = document.getElementById("meshLabel");
+    const texFloatLabel = document.getElementById("texFloatLabel");
+    const displayName = modelName.replace(/\.obj$/i, "");
+    let currentTexLabelText = null;
+    let meshTopWorldPos = null;
+
+    meshLabel.textContent = displayName;
+
+    function updateLabel(textureName) {
+      currentTexLabelText = textureName;
+      if (!textureName) {
+        texFloatLabel.style.display = "none";
+      } else {
+        texFloatLabel.textContent = textureName;
+        texFloatLabel.style.display = "block";
+      }
+    }
+
+    function updateFloatLabelPosition() {
+      if (!currentTexLabelText || !meshTopWorldPos) return;
+      const vector = meshTopWorldPos.clone();
+      vector.project(camera);
+      const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+      const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+      texFloatLabel.style.left = x + "px";
+      texFloatLabel.style.top = y + "px";
+    }
 
     if (!modelName) {
       document.getElementById("progress-text").innerHTML = "<span style='color:#ff3355'>NO MODEL SPECIFIED</span>";
@@ -298,7 +481,7 @@
     const loader = new OBJLoader();
 
     loader.load(
-      "mesh_files/" + modelName,
+      "meshes/" + modelName,
       (object) => {
         let meshFound = false;
 
@@ -326,6 +509,7 @@
         const center = box.getCenter(new THREE.Vector3());
         const sphere = box.getBoundingSphere(new THREE.Sphere());
         const radius = sphere.radius;
+        meshTopWorldPos = new THREE.Vector3(center.x, box.max.y + radius * 0.2, center.z);
 
         sunLight.position.set(center.x + radius * 1.5, center.y + radius * 2, center.z + radius);
         sunLight.target.position.copy(center);
@@ -452,6 +636,106 @@
       controls.update();
     };
 
+    document.getElementById("textureToggle").onclick = function() {
+      const menu = document.getElementById("texturePanel");
+      menu.classList.toggle("hidden");
+      this.classList.toggle("active");
+    };
+
+    const textureLoader = new THREE.TextureLoader();
+
+    const textureNames = [
+      "flagColor","flagPoleColor",
+      "kronk","neoSpazColor","melColor","zoeColor","jackColor","ninjaColor","cyborgColor","frostyColor","bearColor","cowboyColor","alienColor","bonesColor","bunnyColor","robotColor","penguinColor","jumpsuitColor","warriorColor","witchColor","gladiatorColor","superheroColor","actionHeroColor","assassinColor","operaSingerColor","oldLadyColor","agentColor","pixieColor","wrestlerColor","aliColor","santaColor","wizardColor",
+      "kronkIcon","ninjaIcon","cyborgIcon","frostyIcon","bearIcon","cowboyIcon","alienIcon","bonesIcon","bunnyIcon","robotIcon","penguinIcon","jumpsuitIcon","warriorIcon","witchIcon","gladiatorIcon","superheroIcon","actionHeroIcon","assassinIcon","operaSingerIcon","oldLadyIcon","agentIcon","pixieIcon","wrestlerIcon","aliIcon","santaIcon","wizardIcon","melIcon","zoeIcon","jackIcon","neoSpazIcon","cuteSpaz",
+      "kronkColorMask","ninjaColorMask","cyborgColorMask","frostyColorMask","bearColorMask","cowboyColorMask","alienColorMask","bonesColorMask","bunnyColorMask","robotColorMask","penguinColorMask","jumpsuitColorMask","warriorColorMask","witchColorMask","gladiatorColorMask","superheroColorMask","actionHeroColorMask","assassinColorMask","operaSingerColorMask","oldLadyColorMask","agentColorMask","pixieColorMask","wrestlerColorMask","aliColorMask","santaColorMask","wizardColorMask","melColorMask","zoeColorMask","jackColorMask","neoSpazColorMask","frostyIconColorMask","kronkIconColorMask","ninjaIconColorMask","cyborgIconColorMask","bearIconColorMask","cowboyIconColorMask","alienIconColorMask","bonesIconColorMask","bunnyIconColorMask","robotIconColorMask","penguinIconColorMask","jumpsuitIconColorMask","warriorIconColorMask","witchIconColorMask","gladiatorIconColorMask","superheroIconColorMask","actionHeroIconColorMask","assassinIconColorMask","operaSingerIconColorMask","oldLadyIconColorMask","agentIconColorMask","pixieIconColorMask","wrestlerIconColorMask","aliIconColorMask","santaIconColorMask","wizardIconColorMask","melIconColorMask","zoeIconColorMask","jackIconColorMask","neoSpazIconColorMask","characterIconMask","eyeColorTintMask",
+      "bombColor","bombColorIce","bombStickyColor","impactBombColor","impactBombColorLit","landMine","landMineLit","tnt","boxingGlovesColor","shrapnel1Color","fuse",
+      "powerupHealth","powerupSpeed","powerupPunch","powerupBomb","powerupShield","powerupLandMines","powerupImpactBombs","powerupStickyBombs","powerupIceBombs","powerupCurse","shield",
+      "achievementFootballShutout","achievementFootballVictory","achievementWall","achievementFreeLoader","achievementRunaround","achievementOnslaught","achievementTNT","achievementOffYouGo","achievementCrossHair","achievementFlawlessVictory","achievementMedalLarge","achievementMedalMedium","achievementMedalSmall","achievementEmpty","achievementOutline","achievementGotTheMoves","achievementDualWielding","achievementInControl","achievementStayinAlive","achievementTeamPlayer","achievementBoxer","achievementSuperPunch","achievementSharingIsCaring","achievementMine","achievementsIcon",
+      "stepRightUpLevelColor","monkeyFaceLevelColor","courtyardLevelColor","tipTopLevelColor","alwaysLandLevelColor","roundaboutLevelColor","zigZagLevelColor","rampageLevelColor","doomShroomLevelColor","towerDLevelColor","bridgitLevelColor","cragCastleLevelColor","thePadLevelColor","natureBackgroundColor",
+      "stepRightUpPreview","monkeyFacePreview","courtyardPreview","tipTopPreview","alwaysLandPreview","roundaboutPreview","zigzagPreview","rampagePreview","doomShroomPreview","towerDPreview","bridgitPreview","cragCastlePreview","thePadPreview","bigGPreview","hockeyStadiumPreview","footballStadiumPreview","lakeFrigidPreview","mapPreviewMask",
+      "rampageBGColor","rampageBGColor2","doomShroomBGColor","alwaysLandBGColor","tipTopBGColor","lakeFrigid","lakeFrigidReflections","footballStadium","hockeyStadium","treesColor",
+      "explosion","smoke","sparks","glow","scorch","scorchBig","slash","light","lightSharp","lightSoft","shadow","shadowSharp","shadowSoft","circleShadow","rgbStripes","clayStroke",
+      "circle","circleNoAlpha","circleOutline","circleOutlineNoAlpha","circleSoft","circleZigZag","softRect","softRect2","softRectVertical","bar","nub","crossOut","crossOutMask","star","heart","arrow",
+      "uiAtlas","uiAtlas2","menuBG","menuButton","menuIcon","backIcon","upButton","downButton","leftButton","rightButton","plusButton","startButton","scrollWidget","scrollWidgetGlow","buttonSquare","buttonSquareWide","bombButton","buttonBomb","buttonJump","buttonPickUp","buttonPunch","pageLeftRight","frameInset","windowHSmallVMed","windowHSmallVSmall","windowBottomCap","textClearButton","touchArrows","touchArrowsActions","actionButtons","analogStick","cursor","lock","quoteBubble","vrFillMound",
+      "ouyaAButton","ouyaOButton","ouyaUButton","ouyaYButton","controllerIcon","gameCenterIcon",
+      "medalGold","medalSilver","medalBronze","medalComplete","trophy","coin","goldPass",
+      "tickets","ticketsPurple","ticketsMore","ticketRoll","ticketRollBig","ticketRolls","tokens1","tokens2","tokens3","tokens4",
+      "egg1","egg2","egg3","egg4","eggTex1","eggTex2","eggTex3","logoEaster","storeCharacterEaster",
+      "storeIcon","storeCharacter","storeCharacterXmas","inventoryIcon","chestIcon","chestIconEmpty","chestIconMulti","chestIconTint","chestOpenIcon","chestOpenIconTint","levelIcon","nextLevelIcon","replayIcon","logIcon","settingsIcon","graphicsIcon","audioIcon","advancedIcon","usersButton","leaderboardsIcon","iconOnslaught","iconRunaround","googlePlayAchievementsIcon","googlePlayLeaderboardsIcon","googlePlayGamesIcon","googlePlusIcon","googlePlusSignInButton","discordIcon","discordLogo","discordServer","githubLogo","ouyaIcon","merch","logo","aliSplash","playerLineup","multiplayerExamples",
+      "fontBig","fontSmall0","fontSmall1","fontSmall2","fontSmall3","fontSmall4","fontSmall5","fontSmall6","fontSmall7","fontExtras","fontExtras2","fontExtras3","fontExtras4","fontExtras5","chTitleChar1","chTitleChar2","chTitleChar3","chTitleChar4","chTitleChar5",
+      "spinner","spinner0","spinner1","spinner2","spinner3","spinner4","spinner5","spinner6","spinner7","spinner8","spinner9","spinner10","spinner11",
+      "white","black","null","empty","bg","tv","file","folder","puckColor","eyeColor","meter","wings","bigG",
+      "reflectionChar_+x","reflectionChar_-x","reflectionChar_+y","reflectionChar_-y","reflectionChar_+z","reflectionChar_-z","reflectionSharp_+x","reflectionSharp_-x","reflectionSharp_+y","reflectionSharp_-y","reflectionSharp_+z","reflectionSharp_-z","reflectionSharper_+x","reflectionSharper_-x","reflectionSharper_+y","reflectionSharper_-y","reflectionSharper_+z","reflectionSharper_-z","reflectionSharpest_+x","reflectionSharpest_-x","reflectionSharpest_+y","reflectionSharpest_-y","reflectionSharpest_+z","reflectionSharpest_-z","reflectionSoft_+x","reflectionSoft_-x","reflectionSoft_+y","reflectionSoft_-y","reflectionSoft_+z","reflectionSoft_-z","reflectionPowerup_+x","reflectionPowerup_-x","reflectionPowerup_+y","reflectionPowerup_-y","reflectionPowerup_+z","reflectionPowerup_-z"
+    ];
+
+    function toFileName(name) {
+      if (name.startsWith("reflection")) {
+        const dir = name.slice(-2);
+        let base = name.replace(/_([+-][xyz])$/i, "");
+        base = base.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
+        const face = dir.replace("+", "p").replace("-", "n").toLowerCase();
+        return base + ".cubemap/" + face + ".png";
+      }
+      return name.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toLowerCase() + ".png";
+    }
+    
+    const texSearch = document.getElementById("texSearch");
+    const texResults = document.getElementById("texResults");
+
+    function renderResults(filter) {
+      texResults.innerHTML = "";
+      const q = filter.trim().toLowerCase();
+      const matches = textureNames.filter(n => n.toLowerCase().includes(q));
+      matches.slice(0, 40).forEach(name => {
+        const item = document.createElement("div");
+        item.className = "tex-item";
+        item.textContent = name;
+        item.onclick = () => {
+          applyTexture("textures/" + toFileName(name), name);
+          document.querySelectorAll("#texResults .tex-item").forEach(el => el.classList.remove("active"));
+          item.classList.add("active");
+          document.getElementById("texturePanel").classList.add("hidden");
+          document.getElementById("textureToggle").classList.remove("active");
+        };
+        texResults.appendChild(item);
+      });
+    }
+
+    texSearch.addEventListener("focus", () => renderResults(texSearch.value));
+    texSearch.addEventListener("input", () => renderResults(texSearch.value));
+
+    function applyTexture(url, label) {
+      textureLoader.load(url, (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace;
+        meshes.forEach(mesh => {
+          mesh.material.map = tex;
+          mesh.material.color.set(0xffffff);
+          mesh.material.needsUpdate = true;
+        });
+        updateLabel(label);
+      }, undefined, (err) => {
+        console.error("Texture failed to load:", err);
+        alert("Couldn't load that texture — check it exists in /textures");
+      });
+    }
+
+    document.getElementById("texUploadBtn").onclick = () =>
+      document.getElementById("texUpload").click();
+
+    document.getElementById("texUpload").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.type !== "image/png") {
+        alert("Only PNG files are supported. Please upload a .png image.");
+        e.target.value = "";
+        return;
+      }
+      applyTexture(URL.createObjectURL(file), "custom");
+      document.getElementById("texturePanel").classList.add("hidden");
+      document.getElementById("textureToggle").classList.remove("active");
+    });
+
     window.addEventListener("resize", () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -462,6 +746,7 @@
       requestAnimationFrame(animate);
       controls.update();
       updateHeadLight();
+      updateFloatLabelPosition();
       renderer.render(scene, camera);
     }
 
