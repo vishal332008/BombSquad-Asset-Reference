@@ -201,13 +201,13 @@
       <span class="card-icon">🔷</span>
       <div class="card-title">Meshes</div>
       <div class="card-desc">Character parts, props & level geometry names</div>
-      <div class="card-count">461 MESHES</div>
+      <div class="card-count" id="meshCount">LOADING...</div>
     </a>
     <a href="textures.html" class="card textures">
       <span class="card-icon">🎨</span>
       <div class="card-title">Textures</div>
       <div class="card-desc">Colors, icons, UI, effects & every texture tag</div>
-      <div class="card-count">431 TEXTURES</div>
+      <div class="card-count" id="textureCount">LOADING...</div>
     </a>
   </div>
 </main>
@@ -221,6 +221,32 @@
     const newUrl = window.location.pathname.replace('.html', '');
     window.history.replaceState({}, document.title, newUrl);
   }
+
+  async function fetchCounts() {
+    try {
+      const meshRes = await fetch('mesh_files/meshes.json');
+      const meshData = await meshRes.json();
+      if (Array.isArray(meshData)) {
+        const totalMeshes = meshData.reduce((acc, cat) => acc + (cat.items ? cat.items.length : 0), 0);
+        document.getElementById('meshCount').textContent = totalMeshes + ' MESHES';
+      }
+    } catch (e) {
+      document.getElementById('meshCount').textContent = 'UNAVAILABLE';
+    }
+
+    try {
+      const texRes = await fetch('texture_files/textures.json');
+      const texData = await texRes.json();
+      if (Array.isArray(texData)) {
+        const totalTextures = texData.reduce((acc, cat) => acc + (cat.items ? cat.items.length : 0), 0);
+        document.getElementById('textureCount').textContent = totalTextures + ' TEXTURES';
+      }
+    } catch (e) {
+      document.getElementById('textureCount').textContent = 'UNAVAILABLE';
+    }
+  }
+
+  fetchCounts();
 </script>
 
 </body>

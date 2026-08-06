@@ -1,0 +1,205 @@
+[
+  {
+    "key": "char-head",
+    "title": "💀 Character Heads",
+    "items": [
+      "kronkHead", "neoSpazHead", "melHead", "zoeHead", "jackHead", "ninjaHead", 
+      "cyborgHead", "frostyHead", "bearHead", "cowboyHead", "alienHead", "bonesHead", 
+      "bunnyHead", "robotHead", "penguinHead", "jumpsuitHead", "warriorHead", "witchHead", 
+      "gladiatorHead", "superheroHead", "actionHeroHead", "assassinHead", "operaSingerHead", 
+      "oldLadyHead", "agentHead", "pixieHead", "wrestlerHead", "aliHead", "santaHead", "wizardHead"
+    ]
+  },
+  {
+    "key": "char-torso",
+    "title": "👕 Character Torsos",
+    "items": [
+      "kronkTorso", "neoSpazTorso", "melTorso", "zoeTorso", "jackTorso", "ninjaTorso", 
+      "cyborgTorso", "frostyTorso", "bearTorso", "cowboyTorso", "alienTorso", "bonesTorso", 
+      "bunnyTorso", "robotTorso", "penguinTorso", "jumpsuitTorso", "warriorTorso", "witchTorso", 
+      "gladiatorTorso", "superheroTorso", "actionHeroTorso", "assassinTorso", "operaSingerTorso", 
+      "oldLadyTorso", "agentTorso", "pixieTorso", "wrestlerTorso", "aliTorso", "santaTorso", "wizardTorso"
+    ]
+  },
+  {
+    "key": "char-pelvis",
+    "title": "🩲 Character Pelvis",
+    "items": [
+      "kronkPelvis", "neoSpazPelvis", "zoePelvis", "cyborgPelvis", "frostyPelvis", "bearPelvis", 
+      "cowboyPelvis", "alienPelvis", "bonesPelvis", "bunnyPelvis", "robotPelvis", "penguinPelvis", 
+      "jumpsuitPelvis", "warriorPelvis", "witchPelvis", "gladiatorPelvis", "superheroPelvis", 
+      "actionHeroPelvis", "assassinPelvis", "operaSingerPelvis", "oldLadyPelvis", "agentPelvis", 
+      "pixiePelvis", "wrestlerPelvis", "aliPelvis", "wizardPelvis", "ninjaPelvis"
+    ]
+  },
+  {
+    "key": "char-arm",
+    "title": "💪 Character Arms",
+    "items": [
+      "kronkUpperArm", "kronkForeArm", "neoSpazUpperArm", "neoSpazForeArm", "melUpperArm", "melForeArm", 
+      "zoeForeArm", "zoeUpperArm", "jackUpperArm", "jackForeArm", "ninjaUpperArm", "ninjaForeArm", 
+      "cyborgUpperArm", "cyborgForeArm", "frostyUpperArm", "frostyForeArm", "bearUpperArm", "bearForeArm", 
+      "cowboyUpperArm", "cowboyForeArm", "alienUpperArm", "alienForeArm", "bonesUpperArm", "bonesForeArm", 
+      "bunnyUpperArm", "bunnyForeArm", "robotUpperArm", "robotForeArm", "penguinUpperArm", "penguinForeArm", 
+      "jumpsuitUpperArm", "jumpsuitForeArm", "warriorUpperArm", "warriorForeArm", "witchUpperArm", "witchForeArm", 
+      "gladiatorUpperArm", "gladiatorForeArm", "superheroUpperArm", "superheroForeArm", "actionHeroUpperArm", 
+      "actionHeroForeArm", "assassinUpperArm", "assassinForeArm", "operaSingerUpperArm", "operaSingerForeArm", 
+      "oldLadyUpperArm", "oldLadyForeArm", "agentUpperArm", "agentForeArm", "pixieUpperArm", "pixieForeArm", 
+      "wrestlerUpperArm", "wrestlerForeArm", "aliForeArm", "aliUpperArm", "santaUpperArm", "santaForeArm", 
+      "wizardUpperArm", "wizardForeArm"
+    ]
+  },
+  {
+    "key": "char-hand",
+    "title": "🤜 Character Hands",
+    "items": [
+      "kronkHand", "neoSpazHand", "melHand", "zoeHand", "jackHand", "ninjaHand", 
+      "cyborgHand", "frostyHand", "bearHand", "cowboyHand", "alienHand", "bonesHand", 
+      "bunnyHand", "robotHand", "penguinHand", "jumpsuitHand", "warriorHand", "witchHand", 
+      "gladiatorHand", "superheroHand", "actionHeroHand", "assassinHand", "operaSingerHand", 
+      "oldLadyHand", "agentHand", "pixieHand", "wrestlerHand", "aliHand", "santaHand", "wizardHand"
+    ]
+  },
+  {
+    "key": "char-leg",
+    "title": "🦵 Character Legs",
+    "items": [
+      "kronkUpperLeg", "kronkLowerLeg", "neoSpazUpperLeg", "neoSpazLowerLeg", "melUpperLeg", "melLowerLeg", 
+      "zoeUpperLeg", "zoeLowerLeg", "jackUpperLeg", "jackLowerLeg", "ninjaUpperLeg", "ninjaLowerLeg", 
+      "cyborgUpperLeg", "cyborgLowerLeg", "frostyUpperLeg", "frostyLowerLeg", "bearUpperLeg", "bearLowerLeg", 
+      "cowboyUpperLeg", "cowboyLowerLeg", "alienUpperLeg", "alienLowerLeg", "bonesUpperLeg", "bonesLowerLeg", 
+      "bunnyUpperLeg", "bunnyLowerLeg", "robotUpperLeg", "robotLowerLeg", "penguinUpperLeg", "penguinLowerLeg", 
+      "jumpsuitUpperLeg", "jumpsuitLowerLeg", "warriorUpperLeg", "warriorLowerLeg", "witchUpperLeg", "witchLowerLeg", 
+      "gladiatorUpperLeg", "gladiatorLowerLeg", "superheroUpperLeg", "superheroLowerLeg", "actionHeroUpperLeg", 
+      "actionHeroLowerLeg", "assassinUpperLeg", "assassinLowerLeg", "operaSingerUpperLeg", "operaSingerLowerLeg", 
+      "oldLadyUpperLeg", "oldLadyLowerLeg", "agentUpperLeg", "agentLowerLeg", "pixieUpperLeg", "pixieLowerLeg", 
+      "wrestlerUpperLeg", "wrestlerLowerLeg", "aliUpperLeg", "aliLowerLeg", "santaUpperLeg", "santaLowerLeg", 
+      "wizardUpperLeg", "wizardLowerLeg"
+    ]
+  },
+  {
+    "key": "char-toes",
+    "title": "🦶 Character Toes",
+    "items": [
+      "kronkToes", "neoSpazToes", "melToes", "zoeToes", "jackToes", "ninjaToes", 
+      "cyborgToes", "frostyToes", "bearToes", "cowboyToes", "alienToes", "bonesToes", 
+      "bunnyToes", "robotToes", "penguinToes", "jumpsuitToes", "warriorToes", "witchToes", 
+      "gladiatorToes", "superheroToes", "actionHeroToes", "assassinToes", "operaSingerToes", 
+      "oldLadyToes", "agentToes", "pixieToes", "wrestlerToes", "aliToes", "santaToes", "wizardToes"
+    ]
+  },
+  {
+    "key": "char-eye",
+    "title": "👁️ Eyes & Face",
+    "items": [
+      "eyeBall", "eyeBallIris", "eyeLid", "plasticEyesTransparent"
+    ]
+  },
+  {
+    "key": "char-hair",
+    "title": "💇 Hair & Extras",
+    "items": [
+      "hairTuft1", "hairTuft1b", "hairTuft2", "hairTuft3", "hairTuft4", "runningShoes", "wing", "boxingGlove"
+    ]
+  },
+  {
+    "key": "weapons",
+    "title": "💣 Weapons & Items",
+    "items": [
+      "bomb", "bombSticky", "impactBomb", "landMine", "tnt", "shield", "puck", 
+      "egg", "powerup", "powerupSimple", "flagPole", "flagStand", "shrapnel1", "shrapnelBoard", "shrapnelSlime"
+    ]
+  },
+  {
+    "key": "levels",
+    "title": "🗺️ Level Meshes",
+    "items": [
+      "stepRightUpLevel", "roundaboutLevel", "zigZagLevel", "rampageLevel", "doomShroomLevel", 
+      "towerDLevel", "bridgitLevelTop", "cragCastleLevel", "thePadLevel", "courtyardLevel", 
+      "alwaysLandLevel", "tipTopLevel", "monkeyFaceLevel", "lakeFrigid", "lakeFrigidTop", 
+      "lakeFrigidReflections", "footballStadium", "hockeyStadiumInner", "hockeyStadiumOuter", 
+      "hockeyStadiumStands", "bigG", "trees", "natureBackground", "doomShroomStem", "doomShroomBG", 
+      "rampageBG", "rampageBG2", "alwaysLandBG", "tipTopBG", "thePadBG", "thePadBGSmall"
+    ]
+  },
+  {
+    "key": "collide",
+    "title": "🧱 Collision & Bumper Meshes",
+    "items": [
+      "stepRightUpLevelCollide", "roundaboutLevelBumper", "zigZagLevelBumper", "zigZagLevelCollide", 
+      "rampageLevelCollide", "rampageBumper", "doomShroomLevelCollide", "doomShroomStemCollide", 
+      "towerDLevelCollide", "towerDPlayerWall", "bridgitLevelCollide", "bridgitLevelRailingCollide", 
+      "cragCastleLevelCollide", "cragCastleLevelBumper", "thePadLevelCollide", "thePadLevelBumper", 
+      "courtyardLevelCollide", "courtyardPlayerWall", "alwaysLandLevelCollide", "tipTopLevelCollide", 
+      "tipTopLevelBumper", "monkeyFaceLevelCollide", "monkeyFaceLevelBumper", "lakeFrigidCollide", 
+      "footballStadiumCollide", "hockeyStadiumCollide", "bigGCollide", "bigGBumper", "natureBackgroundCollide"
+    ]
+  },
+  {
+    "key": "levelparts",
+    "title": "🏗️ Level Parts & VR Fills",
+    "items": [
+      "stepRightUpLevelBottom", "roundaboutLevelBottom", "zigZagLevelBottom", "rampageLevelBottom", 
+      "towerDLevelBottom", "bridgitLevelBottom", "cragCastleLevelBottom", "thePadLevelBottom", 
+      "courtyardLevelBottom", "alwaysLandLevelBottom", "tipTopLevelBottom", "monkeyFaceLevelBottom", 
+      "bigGBottom", "stepRightUpVRFillMound", "cragCastleVRFillMound", "doomShroomVRFill", "rampageVRFill", 
+      "thePadVRFillTop", "thePadVRFillBottom", "thePadVRFillMound", "alwaysLandVRFillMound", 
+      "lakeFrigidVRFill", "footballStadiumVRFill", "natureBackgroundVRFill"
+    ]
+  },
+  {
+    "key": "ui-btn",
+    "title": "🔘 UI Buttons",
+    "items": [
+      "buttonSmallOpaque", "buttonSmallTransparent", "buttonMediumOpaque", "buttonMediumTransparent", 
+      "buttonLargeOpaque", "buttonLargeTransparent", "buttonLargerOpaque", "buttonLargerTransparent", 
+      "buttonBackOpaque", "buttonBackTransparent", "buttonBackSmallOpaque", "buttonBackSmallTransparent", 
+      "buttonSquareOpaque", "buttonSquareTransparent", "buttonTabOpaque", "buttonTabTransparent", 
+      "buttonNull", "actionButtonLeft", "actionButtonRight", "actionButtonTop", "actionButtonBottom", 
+      "level_select_button_opaque", "level_select_button_transparent"
+    ]
+  },
+  {
+    "key": "ui-misc",
+    "title": "🖥️ UI Misc",
+    "items": [
+      "toolbarBacking", "toolbarBackingOpaque", "toolbarBackingTransparent", "toolbarBackingTop", 
+      "toolbarBackingTop2", "toolbarBackingBottom", "toolbarBackingBottom2", "windowHSmallVMedOpaque", 
+      "windowHSmallVMedTransparent", "windowHSmallVSmallOpaque", "windowHSmallVSmallTransparent", 
+      "windowBGBlotch", "scrollBarThumbOpaque", "scrollBarThumbTransparent", "scrollBarThumbShortOpaque", 
+      "scrollBarThumbShortTransparent", "scrollBarThumbShortSimple", "scrollBarThumbSimple", 
+      "scrollBarTroughTransparent", "scrollWidgetShort", "frameInset", "softEdgeOutside", "softEdgeInside", 
+      "currencyMeter", "currencyPlusButton", "meterTransparent", "heartOpaque", "heartTransparent", 
+      "achievementOutline", "checkTransparent", "crossOut", "textBoxTransparent", "angryComputerTransparent", 
+      "logoTransparent", "logo", "playerLineup1Transparent", "playerLineup2Transparent", "playerLineup3Transparent", 
+      "playerLineup4Transparent", "arrowFront", "arrowBack", "locator", "locatorBox", "locatorCircle", 
+      "locatorCircleOutline", "overlayGuide"
+    ]
+  },
+  {
+    "key": "effects",
+    "title": "✨ Effects & Particles",
+    "items": [
+      "flash", "shockWave", "scorch", "vrFade", "vrOverlay"
+    ]
+  },
+  {
+    "key": "images",
+    "title": "🖼️ Image Planes",
+    "items": [
+      "image1x1", "image1x1FullScreen", "image1x1VRFullScreen", "image2x1", "image2x1Vertical", "image4x1", "image16x1"
+    ]
+  },
+  {
+    "key": "misc",
+    "title": "⚙️ Misc / System",
+    "items": [
+      "box", "cylinder"
+    ]
+  },
+  {
+    "key": "unused",
+    "title": "❌ Not Categorized",
+    "items": []
+  }
+]

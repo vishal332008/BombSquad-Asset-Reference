@@ -1,24 +1,216 @@
 [
-  "flagColor", "flagPoleColor",
-  "kronk", "neoSpazColor", "melColor", "zoeColor", "jackColor", "ninjaColor", "cyborgColor", "frostyColor", "bearColor", "cowboyColor", "alienColor", "bonesColor", "bunnyColor", "robotColor", "penguinColor", "jumpsuitColor", "warriorColor", "witchColor", "gladiatorColor", "superheroColor", "actionHeroColor", "assassinColor", "operaSingerColor", "oldLadyColor", "agentColor", "pixieColor", "wrestlerColor", "aliColor", "santaColor", "wizardColor",
-  "kronkIcon", "ninjaIcon", "cyborgIcon", "frostyIcon", "bearIcon", "cowboyIcon", "alienIcon", "bonesIcon", "bunnyIcon", "robotIcon", "penguinIcon", "jumpsuitIcon", "warriorIcon", "witchIcon", "gladiatorIcon", "superheroIcon", "actionHeroIcon", "assassinIcon", "operaSingerIcon", "oldLadyIcon", "agentIcon", "pixieIcon", "wrestlerIcon", "aliIcon", "santaIcon", "wizardIcon", "melIcon", "zoeIcon", "jackIcon", "neoSpazIcon", "cuteSpaz",
-  "kronkColorMask", "ninjaColorMask", "cyborgColorMask", "frostyColorMask", "bearColorMask", "cowboyColorMask", "alienColorMask", "bonesColorMask", "bunnyColorMask", "robotColorMask", "penguinColorMask", "jumpsuitColorMask", "warriorColorMask", "witchColorMask", "gladiatorColorMask", "superheroColorMask", "actionHeroColorMask", "assassinColorMask", "operaSingerColorMask", "oldLadyColorMask", "agentColorMask", "pixieColorMask", "wrestlerColorMask", "aliColorMask", "santaColorMask", "wizardColorMask", "melColorMask", "zoeColorMask", "jackColorMask", "neoSpazColorMask", "frostyIconColorMask", "kronkIconColorMask", "ninjaIconColorMask", "cyborgIconColorMask", "bearIconColorMask", "cowboyIconColorMask", "alienIconColorMask", "bonesIconColorMask", "bunnyIconColorMask", "robotIconColorMask", "penguinIconColorMask", "jumpsuitIconColorMask", "warriorIconColorMask", "witchIconColorMask", "gladiatorIconColorMask", "superheroIconColorMask", "actionHeroIconColorMask", "assassinIconColorMask", "operaSingerIconColorMask", "oldLadyIconColorMask", "agentIconColorMask", "pixieIconColorMask", "wrestlerIconColorMask", "aliIconColorMask", "santaIconColorMask", "wizardIconColorMask", "melIconColorMask", "zoeIconColorMask", "jackIconColorMask", "neoSpazIconColorMask", "characterIconMask", "eyeColorTintMask",
-  "bombColor", "bombColorIce", "bombStickyColor", "impactBombColor", "impactBombColorLit", "landMine", "landMineLit", "tnt", "boxingGlovesColor", "shrapnel1Color", "fuse",
-  "powerupHealth", "powerupSpeed", "powerupPunch", "powerupBomb", "powerupShield", "powerupLandMines", "powerupImpactBombs", "powerupStickyBombs", "powerupIceBombs", "powerupCurse", "shield",
-  "achievementFootballShutout", "achievementFootballVictory", "achievementWall", "achievementFreeLoader", "achievementRunaround", "achievementOnslaught", "achievementTNT", "achievementOffYouGo", "achievementCrossHair", "achievementFlawlessVictory", "achievementMedalLarge", "achievementMedalMedium", "achievementMedalSmall", "achievementEmpty", "achievementOutline", "achievementGotTheMoves", "achievementDualWielding", "achievementInControl", "achievementStayinAlive", "achievementTeamPlayer", "achievementBoxer", "achievementSuperPunch", "achievementSharingIsCaring", "achievementMine", "achievementsIcon",
-  "stepRightUpLevelColor", "monkeyFaceLevelColor", "courtyardLevelColor", "tipTopLevelColor", "alwaysLandLevelColor", "roundaboutLevelColor", "zigZagLevelColor", "rampageLevelColor", "doomShroomLevelColor", "towerDLevelColor", "bridgitLevelColor", "cragCastleLevelColor", "thePadLevelColor", "natureBackgroundColor",
-  "stepRightUpPreview", "monkeyFacePreview", "courtyardPreview", "tipTopPreview", "alwaysLandPreview", "roundaboutPreview", "zigzagPreview", "rampagePreview", "doomShroomPreview", "towerDPreview", "bridgitPreview", "cragCastlePreview", "thePadPreview", "bigGPreview", "hockeyStadiumPreview", "footballStadiumPreview", "lakeFrigidPreview", "mapPreviewMask",
-  "rampageBGColor", "rampageBGColor2", "doomShroomBGColor", "alwaysLandBGColor", "tipTopBGColor", "lakeFrigid", "lakeFrigidReflections", "footballStadium", "hockeyStadium", "treesColor",
-  "explosion", "smoke", "sparks", "glow", "scorch", "scorchBig", "slash", "light", "lightSharp", "lightSoft", "shadow", "shadowSharp", "shadowSoft", "circleShadow", "rgbStripes", "clayStroke",
-  "circle", "circleNoAlpha", "circleOutline", "circleOutlineNoAlpha", "circleSoft", "circleZigZag", "softRect", "softRect2", "softRectVertical", "bar", "nub", "crossOut", "crossOutMask", "star", "heart", "arrow",
-  "uiAtlas", "uiAtlas2", "menuBG", "menuButton", "menuIcon", "backIcon", "upButton", "downButton", "leftButton", "rightButton", "plusButton", "startButton", "scrollWidget", "scrollWidgetGlow", "buttonSquare", "buttonSquareWide", "bombButton", "buttonBomb", "buttonJump", "buttonPickUp", "buttonPunch", "pageLeftRight", "frameInset", "windowHSmallVMed", "windowHSmallVSmall", "windowBottomCap", "textClearButton", "touchArrows", "touchArrowsActions", "actionButtons", "analogStick", "cursor", "lock", "quoteBubble", "vrFillMound",
-  "ouyaAButton", "ouyaOButton", "ouyaUButton", "ouyaYButton", "controllerIcon", "gameCenterIcon",
-  "medalGold", "medalSilver", "medalBronze", "medalComplete", "trophy", "coin", "goldPass",
-  "tickets", "ticketsPurple", "ticketsMore", "ticketRoll", "ticketRollBig", "ticketRolls", "tokens1", "tokens2", "tokens3", "tokens4",
-  "egg1", "egg2", "egg3", "egg4", "eggTex1", "eggTex2", "eggTex3", "logoEaster", "storeCharacterEaster",
-  "storeIcon", "storeCharacter", "storeCharacterXmas", "inventoryIcon", "chestIcon", "chestIconEmpty", "chestIconMulti", "chestIconTint", "chestOpenIcon", "chestOpenIconTint", "levelIcon", "nextLevelIcon", "replayIcon", "logIcon", "settingsIcon", "graphicsIcon", "audioIcon", "advancedIcon", "usersButton", "leaderboardsIcon", "iconOnslaught", "iconRunaround", "googlePlayAchievementsIcon", "googlePlayLeaderboardsIcon", "googlePlayGamesIcon", "googlePlusIcon", "googlePlusSignInButton", "discordIcon", "discordLogo", "discordServer", "githubLogo", "ouyaIcon", "merch", "logo", "aliSplash", "playerLineup", "multiplayerExamples",
-  "fontBig", "fontSmall0", "fontSmall1", "fontSmall2", "fontSmall3", "fontSmall4", "fontSmall5", "fontSmall6", "fontSmall7", "fontExtras", "fontExtras2", "fontExtras3", "fontExtras4", "fontExtras5", "chTitleChar1", "chTitleChar2", "chTitleChar3", "chTitleChar4", "chTitleChar5",
-  "spinner", "spinner0", "spinner1", "spinner2", "spinner3", "spinner4", "spinner5", "spinner6", "spinner7", "spinner8", "spinner9", "spinner10", "spinner11",
-  "white", "black", "null", "empty", "bg", "tv", "file", "folder", "puckColor", "eyeColor", "meter", "wings", "bigG",
-  "reflectionChar_+x", "reflectionChar_-x", "reflectionChar_+y", "reflectionChar_-y", "reflectionChar_+z", "reflectionChar_-z", "reflectionSharp_+x", "reflectionSharp_-x", "reflectionSharp_+y", "reflectionSharp_-y", "reflectionSharp_+z", "reflectionSharp_-z", "reflectionSharper_+x", "reflectionSharper_-x", "reflectionSharper_+y", "reflectionSharper_-y", "reflectionSharper_+z", "reflectionSharper_-z", "reflectionSharpest_+x", "reflectionSharpest_-x", "reflectionSharpest_+y", "reflectionSharpest_-y", "reflectionSharpest_+z", "reflectionSharpest_-z", "reflectionSoft_+x", "reflectionSoft_-x", "reflectionSoft_+y", "reflectionSoft_-y", "reflectionSoft_+z", "reflectionSoft_-z", "reflectionPowerup_+x", "reflectionPowerup_-x", "reflectionPowerup_+y", "reflectionPowerup_-y", "reflectionPowerup_+z", "reflectionPowerup_-z"
+  {
+    "key": "flag",
+    "title": "🚩 Flag",
+    "items": [
+      "flagColor", "flagPoleColor"
+    ]
+  },
+  {
+    "key": "chars",
+    "title": "👤 Character Colors",
+    "items": [
+      "kronk", "neoSpazColor", "melColor", "zoeColor", "jackColor", "ninjaColor", "cyborgColor", 
+      "frostyColor", "bearColor", "cowboyColor", "alienColor", "bonesColor", "bunnyColor", "robotColor", 
+      "penguinColor", "jumpsuitColor", "warriorColor", "witchColor", "gladiatorColor", "superheroColor", 
+      "actionHeroColor", "assassinColor", "operaSingerColor", "oldLadyColor", "agentColor", "pixieColor", 
+      "wrestlerColor", "aliColor", "santaColor", "wizardColor"
+    ]
+  },
+  {
+    "key": "icons",
+    "title": "🎭 Character Icons",
+    "items": [
+      "kronkIcon", "ninjaIcon", "cyborgIcon", "frostyIcon", "bearIcon", "cowboyIcon", "alienIcon", 
+      "bonesIcon", "bunnyIcon", "robotIcon", "penguinIcon", "jumpsuitIcon", "warriorIcon", "witchIcon", 
+      "gladiatorIcon", "superheroIcon", "actionHeroIcon", "assassinIcon", "operaSingerIcon", "oldLadyIcon", 
+      "agentIcon", "pixieIcon", "wrestlerIcon", "aliIcon", "santaIcon", "wizardIcon", "melIcon", "zoeIcon", 
+      "jackIcon", "neoSpazIcon", "cuteSpaz"
+    ]
+  },
+  {
+    "key": "masks",
+    "title": "🎭 Color Masks",
+    "items": [
+      "kronkColorMask", "ninjaColorMask", "cyborgColorMask", "frostyColorMask", "bearColorMask", 
+      "cowboyColorMask", "alienColorMask", "bonesColorMask", "bunnyColorMask", "robotColorMask", 
+      "penguinColorMask", "jumpsuitColorMask", "warriorColorMask", "witchColorMask", "gladiatorColorMask", 
+      "superheroColorMask", "actionHeroColorMask", "assassinColorMask", "operaSingerColorMask", "oldLadyColorMask", 
+      "agentColorMask", "pixieColorMask", "wrestlerColorMask", "aliColorMask", "santaColorMask", "wizardColorMask", 
+      "melColorMask", "zoeColorMask", "jackColorMask", "neoSpazColorMask", "frostyIconColorMask", "kronkIconColorMask", 
+      "ninjaIconColorMask", "cyborgIconColorMask", "bearIconColorMask", "cowboyIconColorMask", "alienIconColorMask", 
+      "bonesIconColorMask", "bunnyIconColorMask", "robotIconColorMask", "penguinIconColorMask", "jumpsuitIconColorMask", 
+      "warriorIconColorMask", "witchIconColorMask", "gladiatorIconColorMask", "superheroIconColorMask", 
+      "actionHeroIconColorMask", "assassinIconColorMask", "operaSingerIconColorMask", "oldLadyIconColorMask", 
+      "agentIconColorMask", "pixieIconColorMask", "wrestlerIconColorMask", "aliIconColorMask", "santaIconColorMask", 
+      "wizardIconColorMask", "melIconColorMask", "zoeIconColorMask", "jackIconColorMask", "neoSpazIconColorMask", 
+      "characterIconMask", "eyeColorTintMask"
+    ]
+  },
+  {
+    "key": "bombs",
+    "title": "💣 Bombs & Weapons",
+    "items": [
+      "bombColor", "bombColorIce", "bombStickyColor", "impactBombColor", "impactBombColorLit", 
+      "landMine", "landMineLit", "tnt", "boxingGlovesColor", "shrapnel1Color", "fuse"
+    ]
+  },
+  {
+    "key": "powerups",
+    "title": "⚡ Powerups",
+    "items": [
+      "powerupHealth", "powerupSpeed", "powerupPunch", "powerupBomb", "powerupShield", 
+      "powerupLandMines", "powerupImpactBombs", "powerupStickyBombs", "powerupIceBombs", "powerupCurse", "shield"
+    ]
+  },
+  {
+    "key": "achieve",
+    "title": "🏆 Achievements",
+    "items": [
+      "achievementFootballShutout", "achievementFootballVictory", "achievementWall", "achievementFreeLoader", 
+      "achievementRunaround", "achievementOnslaught", "achievementTNT", "achievementOffYouGo", "achievementCrossHair", 
+      "achievementFlawlessVictory", "achievementMedalLarge", "achievementMedalMedium", "achievementMedalSmall", 
+      "achievementEmpty", "achievementOutline", "achievementGotTheMoves", "achievementDualWielding", "achievementInControl", 
+      "achievementStayinAlive", "achievementTeamPlayer", "achievementBoxer", "achievementSuperPunch", 
+      "achievementSharingIsCaring", "achievementMine", "achievementsIcon"
+    ]
+  },
+  {
+    "key": "lvlcolor",
+    "title": "🗺️ Level Colors",
+    "items": [
+      "stepRightUpLevelColor", "monkeyFaceLevelColor", "courtyardLevelColor", "tipTopLevelColor", 
+      "alwaysLandLevelColor", "roundaboutLevelColor", "zigZagLevelColor", "rampageLevelColor", 
+      "doomShroomLevelColor", "towerDLevelColor", "bridgitLevelColor", "cragCastleLevelColor", 
+      "thePadLevelColor", "natureBackgroundColor"
+    ]
+  },
+  {
+    "key": "previews",
+    "title": "🗺️ Level Previews",
+    "items": [
+      "stepRightUpPreview", "monkeyFacePreview", "courtyardPreview", "tipTopPreview", "alwaysLandPreview", 
+      "roundaboutPreview", "zigzagPreview", "rampagePreview", "doomShroomPreview", "towerDPreview", 
+      "bridgitPreview", "cragCastlePreview", "thePadPreview", "bigGPreview", "hockeyStadiumPreview", 
+      "footballStadiumPreview", "lakeFrigidPreview", "mapPreviewMask"
+    ]
+  },
+  {
+    "key": "bgs",
+    "title": "🏟️ Level Backgrounds",
+    "items": [
+      "rampageBGColor", "rampageBGColor2", "doomShroomBGColor", "alwaysLandBGColor", "tipTopBGColor", 
+      "lakeFrigid", "lakeFrigidReflections", "footballStadium", "hockeyStadium", "treesColor"
+    ]
+  },
+  {
+    "key": "effects",
+    "title": "✨ Effects & Particles",
+    "items": [
+      "explosion", "smoke", "sparks", "glow", "scorch", "scorchBig", "slash", "light", 
+      "lightSharp", "lightSoft", "shadow", "shadowSharp", "shadowSoft", "circleShadow", "rgbStripes", "clayStroke"
+    ]
+  },
+  {
+    "key": "shapes",
+    "title": "🔵 Shapes & Primitives",
+    "items": [
+      "circle", "circleNoAlpha", "circleOutline", "circleOutlineNoAlpha", "circleSoft", "circleZigZag", 
+      "softRect", "softRect2", "softRectVertical", "bar", "nub", "crossOut", "crossOutMask", "star", "heart", "arrow"
+    ]
+  },
+  {
+    "key": "ui",
+    "title": "🖥️ UI Elements",
+    "items": [
+      "uiAtlas", "uiAtlas2", "menuBG", "menuButton", "menuIcon", "backIcon", "upButton", "downButton", 
+      "leftButton", "rightButton", "plusButton", "startButton", "scrollWidget", "scrollWidgetGlow", 
+      "buttonSquare", "buttonSquareWide", "bombButton", "buttonBomb", "buttonJump", "buttonPickUp", 
+      "buttonPunch", "pageLeftRight", "frameInset", "windowHSmallVMed", "windowHSmallVSmall", "windowBottomCap", 
+      "textClearButton", "touchArrows", "touchArrowsActions", "actionButtons", "analogStick", "cursor", 
+      "lock", "quoteBubble", "vrFillMound"
+    ]
+  },
+  {
+    "key": "ctrl",
+    "title": "🎮 Controller Buttons",
+    "items": [
+      "ouyaAButton", "ouyaOButton", "ouyaUButton", "ouyaYButton", "controllerIcon", "gameCenterIcon"
+    ]
+  },
+  {
+    "key": "medals",
+    "title": "🏅 Medals & Trophies",
+    "items": [
+      "medalGold", "medalSilver", "medalBronze", "medalComplete", "trophy", "coin", "goldPass"
+    ]
+  },
+  {
+    "key": "currency",
+    "title": "🎟️ Tickets & Currency",
+    "items": [
+      "tickets", "ticketsPurple", "ticketsMore", "ticketRoll", "ticketRollBig", "ticketRolls", 
+      "tokens1", "tokens2", "tokens3", "tokens4"
+    ]
+  },
+  {
+    "key": "easter",
+    "title": "🥚 Easter Eggs",
+    "items": [
+      "egg1", "egg2", "egg3", "egg4", "eggTex1", "eggTex2", "eggTex3", "logoEaster", "storeCharacterEaster"
+    ]
+  },
+  {
+    "key": "store",
+    "title": "🛍️ Store & Icons",
+    "items": [
+      "storeIcon", "storeCharacter", "storeCharacterXmas", "inventoryIcon", "chestIcon", "chestIconEmpty", 
+      "chestIconMulti", "chestIconTint", "chestOpenIcon", "chestOpenIconTint", "levelIcon", "nextLevelIcon", 
+      "replayIcon", "logIcon", "settingsIcon", "graphicsIcon", "audioIcon", "advancedIcon", "usersButton", 
+      "leaderboardsIcon", "iconOnslaught", "iconRunaround", "googlePlayAchievementsIcon", "googlePlayLeaderboardsIcon", 
+      "googlePlayGamesIcon", "googlePlusIcon", "googlePlusSignInButton", "discordIcon", "discordLogo", 
+      "discordServer", "githubLogo", "ouyaIcon", "merch", "logo", "aliSplash", "playerLineup", "multiplayerExamples"
+    ]
+  },
+  {
+    "key": "fonts",
+    "title": "🔤 Fonts",
+    "items": [
+      "fontBig", "fontSmall0", "fontSmall1", "fontSmall2", "fontSmall3", "fontSmall4", "fontSmall5", 
+      "fontSmall6", "fontSmall7", "fontExtras", "fontExtras2", "fontExtras3", "fontExtras4", "fontExtras5", 
+      "chTitleChar1", "chTitleChar2", "chTitleChar3", "chTitleChar4", "chTitleChar5"
+    ]
+  },
+  {
+    "key": "reflect",
+    "title": "🪞 Reflections",
+    "items": [
+      "reflectionChar_+x", "reflectionChar_-x", "reflectionChar_+y", "reflectionChar_-y", "reflectionChar_+z", "reflectionChar_-z", 
+      "reflectionSharp_+x", "reflectionSharp_-x", "reflectionSharp_+y", "reflectionSharp_-y", "reflectionSharp_+z", "reflectionSharp_-z", 
+      "reflectionSharper_+x", "reflectionSharper_-x", "reflectionSharper_+y", "reflectionSharper_-y", "reflectionSharper_+z", "reflectionSharper_-z", 
+      "reflectionSharpest_+x", "reflectionSharpest_-x", "reflectionSharpest_+y", "reflectionSharpest_-y", "reflectionSharpest_+z", "reflectionSharpest_-z", 
+      "reflectionSoft_+x", "reflectionSoft_-x", "reflectionSoft_+y", "reflectionSoft_-y", "reflectionSoft_+z", "reflectionSoft_-z", 
+      "reflectionPowerup_+x", "reflectionPowerup_-x", "reflectionPowerup_+y", "reflectionPowerup_-y", "reflectionPowerup_+z", "reflectionPowerup_-z"
+    ]
+  },
+  {
+    "key": "spinners",
+    "title": "🔁 Spinners",
+    "items": [
+      "spinner", "spinner0", "spinner1", "spinner2", "spinner3", "spinner4", "spinner5", 
+      "spinner6", "spinner7", "spinner8", "spinner9", "spinner10", "spinner11"
+    ]
+  },
+  {
+    "key": "misc",
+    "title": "⚙️ Misc / System",
+    "items": [
+      "white", "black", "null", "empty", "bg", "tv", "file", "folder", "puckColor", "eyeColor", "meter", "wings", "bigG"
+    ]
+  },
+  {
+    "key": "unused",
+    "title": "❌ Not Categorized",
+    "items": []
+  }
 ]

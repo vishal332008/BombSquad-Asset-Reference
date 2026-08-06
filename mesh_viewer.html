@@ -435,7 +435,15 @@
     let textureNames = [];
     fetch('texture_files/textures.json')
       .then(res => res.json())
-      .then(data => { textureNames = data; })
+      .then(data => {
+        if (Array.isArray(data)) {
+          if (data.length > 0 && typeof data[0] === 'object' && data[0] !== null) {
+            textureNames = data.flatMap(cat => cat.items || []);
+          } else {
+            textureNames = data;
+          }
+        }
+      })
       .catch(err => console.error(err));
 
     const loader = new OBJLoader();

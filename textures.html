@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BombSquad Texture Reference</title>
 <link rel="icon" type="image/png" href="BombSquadIcon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vishal332008.github.io/BombSquad-Asset-Reference/textures">
+<meta property="og:title" content="BombSquad Asset Reference - Textures">
+<meta property="og:description" content="View all textures for BombSquad 1.8.0.">
+<meta property="og:image" content="https://raw.githubusercontent.com/vishal332008/BombSquad-Asset-Reference/refs/heads/main/BombSquadIcon.png">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -28,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* Animated grid background */
   body::before {
     content: '';
     position: fixed;
@@ -118,7 +122,6 @@
     text-transform: uppercase;
   }
 
-  /* Search */
   .search-wrap {
     position: sticky;
     top: 0;
@@ -166,7 +169,6 @@
     pointer-events: none;
   }
 
-  /* Main content */
   main {
     position: relative;
     z-index: 1;
@@ -239,7 +241,6 @@
 
   .tag.hidden { display: none; }
 
-  /* Copied toast */
   .toast {
     position: fixed;
     bottom: 2rem;
@@ -263,7 +264,6 @@
     transform: translateX(-50%) translateY(0);
   }
 
-  /* No results */
   .no-results {
     display: none;
     text-align: center;
@@ -271,11 +271,6 @@
     color: var(--muted);
     font-size: 0.85rem;
     letter-spacing: 0.1em;
-  }
-
-  img {
-    position: fixed;
-    pointer-events: none;
   }
 
   footer {
@@ -289,106 +284,109 @@
     border-top: 1px solid var(--border);
   }
 
-  /* ── Per-section color themes ── */
-  /* Flag */         [data-section="flag"] .section-title       { color: #ff4d00; border-color: #ff4d00; }
+  [data-section="flag"] .section-title       { color: #ff4d00; border-color: #ff4d00; }
   [data-section="flag"] .tag         { color: #ff4d00; border-color: #ff4d0044; background: #ff4d0010; }
   [data-section="flag"] .tag:hover   { background: #ff4d0025; border-color: #ff4d00; }
 
-  /* Characters */   [data-section="chars"] .section-title      { color: #ff9900; border-color: #ff9900; }
+  [data-section="chars"] .section-title      { color: #ff9900; border-color: #ff9900; }
   [data-section="chars"] .tag        { color: #ff9900; border-color: #ff990044; background: #ff990010; }
   [data-section="chars"] .tag:hover  { background: #ff990025; border-color: #ff9900; }
 
-  /* Icons */        [data-section="icons"] .section-title      { color: #ffcc00; border-color: #ffcc00; }
+  [data-section="icons"] .section-title      { color: #ffcc00; border-color: #ffcc00; }
   [data-section="icons"] .tag        { color: #ffcc00; border-color: #ffcc0044; background: #ffcc0010; }
   [data-section="icons"] .tag:hover  { background: #ffcc0025; border-color: #ffcc00; }
 
-  /* Masks */        [data-section="masks"] .section-title      { color: #ffe680; border-color: #ffe680; }
+  [data-section="masks"] .section-title      { color: #ffe680; border-color: #ffe680; }
   [data-section="masks"] .tag        { color: #ffe680; border-color: #ffe68033; background: #ffe68008; }
   [data-section="masks"] .tag:hover  { background: #ffe68020; border-color: #ffe680; }
 
-  /* Bombs */        [data-section="bombs"] .section-title      { color: #ff2255; border-color: #ff2255; }
+  [data-section="bombs"] .section-title      { color: #ff2255; border-color: #ff2255; }
   [data-section="bombs"] .tag        { color: #ff2255; border-color: #ff225544; background: #ff225510; }
   [data-section="bombs"] .tag:hover  { background: #ff225525; border-color: #ff2255; }
 
-  /* Powerups */     [data-section="powerups"] .section-title   { color: #00e5ff; border-color: #00e5ff; }
+  [data-section="powerups"] .section-title   { color: #00e5ff; border-color: #00e5ff; }
   [data-section="powerups"] .tag     { color: #00e5ff; border-color: #00e5ff44; background: #00e5ff10; }
   [data-section="powerups"] .tag:hover { background: #00e5ff25; border-color: #00e5ff; }
 
-  /* Achievements */ [data-section="achieve"] .section-title    { color: #ffd700; border-color: #ffd700; }
+  [data-section="achieve"] .section-title    { color: #ffd700; border-color: #ffd700; }
   [data-section="achieve"] .tag      { color: #ffd700; border-color: #ffd70044; background: #ffd70010; }
   [data-section="achieve"] .tag:hover { background: #ffd70025; border-color: #ffd700; }
 
-  /* Level colors */ [data-section="lvlcolor"] .section-title   { color: #80ff80; border-color: #80ff80; }
+  [data-section="lvlcolor"] .section-title   { color: #80ff80; border-color: #80ff80; }
   [data-section="lvlcolor"] .tag     { color: #80ff80; border-color: #80ff8044; background: #80ff8010; }
   [data-section="lvlcolor"] .tag:hover { background: #80ff8025; border-color: #80ff80; }
 
-  /* Previews */     [data-section="previews"] .section-title   { color: #40ffaa; border-color: #40ffaa; }
+  [data-section="previews"] .section-title   { color: #40ffaa; border-color: #40ffaa; }
   [data-section="previews"] .tag     { color: #40ffaa; border-color: #40ffaa44; background: #40ffaa10; }
   [data-section="previews"] .tag:hover { background: #40ffaa25; border-color: #40ffaa; }
 
-  /* Backgrounds */  [data-section="bgs"] .section-title        { color: #00ccff; border-color: #00ccff; }
+  [data-section="bgs"] .section-title        { color: #00ccff; border-color: #00ccff; }
   [data-section="bgs"] .tag          { color: #00ccff; border-color: #00ccff44; background: #00ccff10; }
   [data-section="bgs"] .tag:hover    { background: #00ccff25; border-color: #00ccff; }
 
-  /* Effects */      [data-section="effects"] .section-title    { color: #ff88ff; border-color: #ff88ff; }
+  [data-section="effects"] .section-title    { color: #ff88ff; border-color: #ff88ff; }
   [data-section="effects"] .tag      { color: #ff88ff; border-color: #ff88ff44; background: #ff88ff10; }
   [data-section="effects"] .tag:hover { background: #ff88ff25; border-color: #ff88ff; }
 
-  /* Shapes */       [data-section="shapes"] .section-title     { color: #aaaaff; border-color: #aaaaff; }
+  [data-section="shapes"] .section-title     { color: #aaaaff; border-color: #aaaaff; }
   [data-section="shapes"] .tag       { color: #aaaaff; border-color: #aaaaff44; background: #aaaaff10; }
   [data-section="shapes"] .tag:hover { background: #aaaaff25; border-color: #aaaaff; }
 
-  /* UI */           [data-section="ui"] .section-title         { color: #88ddff; border-color: #88ddff; }
+  [data-section="ui"] .section-title         { color: #88ddff; border-color: #88ddff; }
   [data-section="ui"] .tag           { color: #88ddff; border-color: #88ddff44; background: #88ddff10; }
   [data-section="ui"] .tag:hover     { background: #88ddff25; border-color: #88ddff; }
 
-  /* Controllers */  [data-section="ctrl"] .section-title       { color: #ff6688; border-color: #ff6688; }
+  [data-section="ctrl"] .section-title       { color: #ff6688; border-color: #ff6688; }
   [data-section="ctrl"] .tag         { color: #ff6688; border-color: #ff668844; background: #ff668810; }
   [data-section="ctrl"] .tag:hover   { background: #ff668825; border-color: #ff6688; }
 
-  /* Medals */       [data-section="medals"] .section-title     { color: #ffdd44; border-color: #ffdd44; }
+  [data-section="medals"] .section-title     { color: #ffdd44; border-color: #ffdd44; }
   [data-section="medals"] .tag       { color: #ffdd44; border-color: #ffdd4444; background: #ffdd4410; }
   [data-section="medals"] .tag:hover { background: #ffdd4425; border-color: #ffdd44; }
 
-  /* Currency */     [data-section="currency"] .section-title   { color: #aaffaa; border-color: #aaffaa; }
+  [data-section="currency"] .section-title   { color: #aaffaa; border-color: #aaffaa; }
   [data-section="currency"] .tag     { color: #aaffaa; border-color: #aaffaa44; background: #aaffaa10; }
   [data-section="currency"] .tag:hover { background: #aaffaa25; border-color: #aaffaa; }
 
-  /* Easter */       [data-section="easter"] .section-title     { color: #ffaacc; border-color: #ffaacc; }
+  [data-section="easter"] .section-title     { color: #ffaacc; border-color: #ffaacc; }
   [data-section="easter"] .tag       { color: #ffaacc; border-color: #ffaacc44; background: #ffaacc10; }
   [data-section="easter"] .tag:hover { background: #ffaacc25; border-color: #ffaacc; }
 
-  /* Store */        [data-section="store"] .section-title      { color: #ff8844; border-color: #ff8844; }
+  [data-section="store"] .section-title      { color: #ff8844; border-color: #ff8844; }
   [data-section="store"] .tag        { color: #ff8844; border-color: #ff884444; background: #ff884410; }
   [data-section="store"] .tag:hover  { background: #ff884425; border-color: #ff8844; }
 
-  /* Fonts */        [data-section="fonts"] .section-title      { color: #ccbbff; border-color: #ccbbff; }
+  [data-section="fonts"] .section-title      { color: #ccbbff; border-color: #ccbbff; }
   [data-section="fonts"] .tag        { color: #ccbbff; border-color: #ccbbff44; background: #ccbbff10; }
   [data-section="fonts"] .tag:hover  { background: #ccbbff25; border-color: #ccbbff; }
 
-  /* Reflections */  [data-section="reflect"] .section-title    { color: #77eeff; border-color: #77eeff; }
+  [data-section="reflect"] .section-title    { color: #77eeff; border-color: #77eeff; }
   [data-section="reflect"] .tag      { color: #77eeff; border-color: #77eeff33; background: #77eeff08; }
   [data-section="reflect"] .tag:hover { background: #77eeff20; border-color: #77eeff; }
 
-  /* Spinners */     [data-section="spinners"] .section-title   { color: #ff77aa; border-color: #ff77aa; }
+  [data-section="spinners"] .section-title   { color: #ff77aa; border-color: #ff77aa; }
   [data-section="spinners"] .tag     { color: #ff77aa; border-color: #ff77aa44; background: #ff77aa10; }
   [data-section="spinners"] .tag:hover { background: #ff77aa25; border-color: #ff77aa; }
 
-  /* Misc */         [data-section="misc"] .section-title       { color: #aaaaaa; border-color: #aaaaaa; }
+  [data-section="misc"] .section-title       { color: #aaaaaa; border-color: #aaaaaa; }
   [data-section="misc"] .tag         { color: #aaaaaa; border-color: #aaaaaa33; background: #aaaaaa08; }
   [data-section="misc"] .tag:hover   { background: #aaaaaa20; border-color: #aaaaaa; }
-
+  
+  /* Fallback color style for any new/extra category keys not explicitly mapped above */
+  .section-title { color: #00e5ff; border-color: #00e5ff; }
+  .tag { color: #00e5ff; border-color: #00e5ff44; background: #00e5ff10; }
+  .tag:hover { background: #00e5ff25; border-color: #00e5ff; }
 </style>
 </head>
 <body>
 
 <header>
-  <a href="." class="home-link">← INDEX</a>
+  <a href="." class="home-link">← HOME</a>
   <h1>BombSquad Textures</h1>
   <p>CLICK ANY TAG TO COPY THE TEXT - BOMBSQUAD 1.8.0</p>
   <div class="stats">
     <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total Textures</div></div>
-    <div class="stat"><div class="stat-num" id="catCount">22</div><div class="stat-label">Categories</div></div>
+    <div class="stat"><div class="stat-num" id="catCount">0</div><div class="stat-label">Categories</div></div>
     <div class="stat"><div class="stat-num" id="visibleCount">0</div><div class="stat-label">Showing</div></div>
   </div>
 </header>
@@ -401,250 +399,6 @@
 </div>
 
 <main id="main">
-
-  <div class="section" data-section="flag">
-    <div class="section-header">
-      <div class="section-title">🚩 Flag</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">flagColor</span>
-      <span class="tag">flagPoleColor</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="chars">
-    <div class="section-header">
-      <div class="section-title">👤 Character Colors</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">kronk</span><span class="tag">neoSpazColor</span><span class="tag">melColor</span><span class="tag">zoeColor</span><span class="tag">jackColor</span><span class="tag">ninjaColor</span><span class="tag">cyborgColor</span><span class="tag">frostyColor</span><span class="tag">bearColor</span><span class="tag">cowboyColor</span><span class="tag">alienColor</span><span class="tag">bonesColor</span><span class="tag">bunnyColor</span><span class="tag">robotColor</span><span class="tag">penguinColor</span><span class="tag">jumpsuitColor</span><span class="tag">warriorColor</span><span class="tag">witchColor</span><span class="tag">gladiatorColor</span><span class="tag">superheroColor</span><span class="tag">actionHeroColor</span><span class="tag">assassinColor</span><span class="tag">operaSingerColor</span><span class="tag">oldLadyColor</span><span class="tag">agentColor</span><span class="tag">pixieColor</span><span class="tag">wrestlerColor</span><span class="tag">aliColor</span><span class="tag">santaColor</span><span class="tag">wizardColor</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="icons">
-    <div class="section-header">
-      <div class="section-title">🎭 Character Icons</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">kronkIcon</span><span class="tag">ninjaIcon</span><span class="tag">cyborgIcon</span><span class="tag">frostyIcon</span><span class="tag">bearIcon</span><span class="tag">cowboyIcon</span><span class="tag">alienIcon</span><span class="tag">bonesIcon</span><span class="tag">bunnyIcon</span><span class="tag">robotIcon</span><span class="tag">penguinIcon</span><span class="tag">jumpsuitIcon</span><span class="tag">warriorIcon</span><span class="tag">witchIcon</span><span class="tag">gladiatorIcon</span><span class="tag">superheroIcon</span><span class="tag">actionHeroIcon</span><span class="tag">assassinIcon</span><span class="tag">operaSingerIcon</span><span class="tag">oldLadyIcon</span><span class="tag">agentIcon</span><span class="tag">pixieIcon</span><span class="tag">wrestlerIcon</span><span class="tag">aliIcon</span><span class="tag">santaIcon</span><span class="tag">wizardIcon</span><span class="tag">melIcon</span><span class="tag">zoeIcon</span><span class="tag">jackIcon</span><span class="tag">neoSpazIcon</span><span class="tag">cuteSpaz</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="masks">
-    <div class="section-header">
-      <div class="section-title">🎭 Color Masks</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">kronkColorMask</span><span class="tag">ninjaColorMask</span><span class="tag">cyborgColorMask</span><span class="tag">frostyColorMask</span><span class="tag">bearColorMask</span><span class="tag">cowboyColorMask</span><span class="tag">alienColorMask</span><span class="tag">bonesColorMask</span><span class="tag">bunnyColorMask</span><span class="tag">robotColorMask</span><span class="tag">penguinColorMask</span><span class="tag">jumpsuitColorMask</span><span class="tag">warriorColorMask</span><span class="tag">witchColorMask</span><span class="tag">gladiatorColorMask</span><span class="tag">superheroColorMask</span><span class="tag">actionHeroColorMask</span><span class="tag">assassinColorMask</span><span class="tag">operaSingerColorMask</span><span class="tag">oldLadyColorMask</span><span class="tag">agentColorMask</span><span class="tag">pixieColorMask</span><span class="tag">wrestlerColorMask</span><span class="tag">aliColorMask</span><span class="tag">santaColorMask</span><span class="tag">wizardColorMask</span><span class="tag">melColorMask</span><span class="tag">zoeColorMask</span><span class="tag">jackColorMask</span><span class="tag">neoSpazColorMask</span><span class="tag">frostyIconColorMask</span><span class="tag">kronkIconColorMask</span><span class="tag">ninjaIconColorMask</span><span class="tag">cyborgIconColorMask</span><span class="tag">bearIconColorMask</span><span class="tag">cowboyIconColorMask</span><span class="tag">alienIconColorMask</span><span class="tag">bonesIconColorMask</span><span class="tag">bunnyIconColorMask</span><span class="tag">robotIconColorMask</span><span class="tag">penguinIconColorMask</span><span class="tag">jumpsuitIconColorMask</span><span class="tag">warriorIconColorMask</span><span class="tag">witchIconColorMask</span><span class="tag">gladiatorIconColorMask</span><span class="tag">superheroIconColorMask</span><span class="tag">actionHeroIconColorMask</span><span class="tag">assassinIconColorMask</span><span class="tag">operaSingerIconColorMask</span><span class="tag">oldLadyIconColorMask</span><span class="tag">agentIconColorMask</span><span class="tag">pixieIconColorMask</span><span class="tag">wrestlerIconColorMask</span><span class="tag">aliIconColorMask</span><span class="tag">santaIconColorMask</span><span class="tag">wizardIconColorMask</span><span class="tag">melIconColorMask</span><span class="tag">zoeIconColorMask</span><span class="tag">jackIconColorMask</span><span class="tag">neoSpazIconColorMask</span><span class="tag">characterIconMask</span><span class="tag">eyeColorTintMask</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="bombs">
-    <div class="section-header">
-      <div class="section-title">💣 Bombs & Weapons</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">bombColor</span><span class="tag">bombColorIce</span><span class="tag">bombStickyColor</span><span class="tag">impactBombColor</span><span class="tag">impactBombColorLit</span><span class="tag">landMine</span><span class="tag">landMineLit</span><span class="tag">tnt</span><span class="tag">boxingGlovesColor</span><span class="tag">shrapnel1Color</span><span class="tag">fuse</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="powerups">
-    <div class="section-header">
-      <div class="section-title">⚡ Powerups</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">powerupHealth</span><span class="tag">powerupSpeed</span><span class="tag">powerupPunch</span><span class="tag">powerupBomb</span><span class="tag">powerupShield</span><span class="tag">powerupLandMines</span><span class="tag">powerupImpactBombs</span><span class="tag">powerupStickyBombs</span><span class="tag">powerupIceBombs</span><span class="tag">powerupCurse</span><span class="tag">shield</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="achieve">
-    <div class="section-header">
-      <div class="section-title">🏆 Achievements</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">achievementFootballShutout</span><span class="tag">achievementFootballVictory</span><span class="tag">achievementWall</span><span class="tag">achievementFreeLoader</span><span class="tag">achievementRunaround</span><span class="tag">achievementOnslaught</span><span class="tag">achievementTNT</span><span class="tag">achievementOffYouGo</span><span class="tag">achievementCrossHair</span><span class="tag">achievementFlawlessVictory</span><span class="tag">achievementMedalLarge</span><span class="tag">achievementMedalMedium</span><span class="tag">achievementMedalSmall</span><span class="tag">achievementEmpty</span><span class="tag">achievementOutline</span><span class="tag">achievementGotTheMoves</span><span class="tag">achievementDualWielding</span><span class="tag">achievementInControl</span><span class="tag">achievementStayinAlive</span><span class="tag">achievementTeamPlayer</span><span class="tag">achievementBoxer</span><span class="tag">achievementSuperPunch</span><span class="tag">achievementSharingIsCaring</span><span class="tag">achievementMine</span><span class="tag">achievementsIcon</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="lvlcolor">
-    <div class="section-header">
-      <div class="section-title">🗺️ Level Colors</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">stepRightUpLevelColor</span><span class="tag">monkeyFaceLevelColor</span><span class="tag">courtyardLevelColor</span><span class="tag">tipTopLevelColor</span><span class="tag">alwaysLandLevelColor</span><span class="tag">roundaboutLevelColor</span><span class="tag">zigZagLevelColor</span><span class="tag">rampageLevelColor</span><span class="tag">doomShroomLevelColor</span><span class="tag">towerDLevelColor</span><span class="tag">bridgitLevelColor</span><span class="tag">cragCastleLevelColor</span><span class="tag">thePadLevelColor</span><span class="tag">natureBackgroundColor</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="previews">
-    <div class="section-header">
-      <div class="section-title">🗺️ Level Previews</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">stepRightUpPreview</span><span class="tag">monkeyFacePreview</span><span class="tag">courtyardPreview</span><span class="tag">tipTopPreview</span><span class="tag">alwaysLandPreview</span><span class="tag">roundaboutPreview</span><span class="tag">zigzagPreview</span><span class="tag">rampagePreview</span><span class="tag">doomShroomPreview</span><span class="tag">towerDPreview</span><span class="tag">bridgitPreview</span><span class="tag">cragCastlePreview</span><span class="tag">thePadPreview</span><span class="tag">bigGPreview</span><span class="tag">hockeyStadiumPreview</span><span class="tag">footballStadiumPreview</span><span class="tag">lakeFrigidPreview</span><span class="tag">mapPreviewMask</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="bgs">
-    <div class="section-header">
-      <div class="section-title">🏟️ Level Backgrounds</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">rampageBGColor</span><span class="tag">rampageBGColor2</span><span class="tag">doomShroomBGColor</span><span class="tag">alwaysLandBGColor</span><span class="tag">tipTopBGColor</span><span class="tag">lakeFrigid</span><span class="tag">lakeFrigidReflections</span><span class="tag">footballStadium</span><span class="tag">hockeyStadium</span><span class="tag">treesColor</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="effects">
-    <div class="section-header">
-      <div class="section-title">✨ Effects & Particles</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">explosion</span><span class="tag">smoke</span><span class="tag">sparks</span><span class="tag">glow</span><span class="tag">scorch</span><span class="tag">scorchBig</span><span class="tag">slash</span><span class="tag">light</span><span class="tag">lightSharp</span><span class="tag">lightSoft</span><span class="tag">shadow</span><span class="tag">shadowSharp</span><span class="tag">shadowSoft</span><span class="tag">circleShadow</span><span class="tag">rgbStripes</span><span class="tag">clayStroke</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="shapes">
-    <div class="section-header">
-      <div class="section-title">🔵 Shapes & Primitives</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">circle</span><span class="tag">circleNoAlpha</span><span class="tag">circleOutline</span><span class="tag">circleOutlineNoAlpha</span><span class="tag">circleSoft</span><span class="tag">circleZigZag</span><span class="tag">softRect</span><span class="tag">softRect2</span><span class="tag">softRectVertical</span><span class="tag">bar</span><span class="tag">nub</span><span class="tag">crossOut</span><span class="tag">crossOutMask</span><span class="tag">star</span><span class="tag">heart</span><span class="tag">arrow</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="ui">
-    <div class="section-header">
-      <div class="section-title">🖥️ UI Elements</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">uiAtlas</span><span class="tag">uiAtlas2</span><span class="tag">menuBG</span><span class="tag">menuButton</span><span class="tag">menuIcon</span><span class="tag">backIcon</span><span class="tag">upButton</span><span class="tag">downButton</span><span class="tag">leftButton</span><span class="tag">rightButton</span><span class="tag">plusButton</span><span class="tag">startButton</span><span class="tag">scrollWidget</span><span class="tag">scrollWidgetGlow</span><span class="tag">buttonSquare</span><span class="tag">buttonSquareWide</span><span class="tag">bombButton</span><span class="tag">buttonBomb</span><span class="tag">buttonJump</span><span class="tag">buttonPickUp</span><span class="tag">buttonPunch</span><span class="tag">pageLeftRight</span><span class="tag">frameInset</span><span class="tag">windowHSmallVMed</span><span class="tag">windowHSmallVSmall</span><span class="tag">windowBottomCap</span><span class="tag">textClearButton</span><span class="tag">touchArrows</span><span class="tag">touchArrowsActions</span><span class="tag">actionButtons</span><span class="tag">analogStick</span><span class="tag">cursor</span><span class="tag">lock</span><span class="tag">quoteBubble</span><span class="tag">vrFillMound</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="ctrl">
-    <div class="section-header">
-      <div class="section-title">🎮 Controller Buttons</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">ouyaAButton</span><span class="tag">ouyaOButton</span><span class="tag">ouyaUButton</span><span class="tag">ouyaYButton</span><span class="tag">controllerIcon</span><span class="tag">gameCenterIcon</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="medals">
-    <div class="section-header">
-      <div class="section-title">🏅 Medals & Trophies</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">medalGold</span><span class="tag">medalSilver</span><span class="tag">medalBronze</span><span class="tag">medalComplete</span><span class="tag">trophy</span><span class="tag">coin</span><span class="tag">goldPass</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="currency">
-    <div class="section-header">
-      <div class="section-title">🎟️ Tickets & Currency</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">tickets</span><span class="tag">ticketsPurple</span><span class="tag">ticketsMore</span><span class="tag">ticketRoll</span><span class="tag">ticketRollBig</span><span class="tag">ticketRolls</span><span class="tag">tokens1</span><span class="tag">tokens2</span><span class="tag">tokens3</span><span class="tag">tokens4</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="easter">
-    <div class="section-header">
-      <div class="section-title">🥚 Easter Eggs</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">egg1</span><span class="tag">egg2</span><span class="tag">egg3</span><span class="tag">egg4</span><span class="tag">eggTex1</span><span class="tag">eggTex2</span><span class="tag">eggTex3</span><span class="tag">logoEaster</span><span class="tag">storeCharacterEaster</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="store">
-    <div class="section-header">
-      <div class="section-title">🛍️ Store & Icons</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">storeIcon</span><span class="tag">storeCharacter</span><span class="tag">storeCharacterXmas</span><span class="tag">inventoryIcon</span><span class="tag">chestIcon</span><span class="tag">chestIconEmpty</span><span class="tag">chestIconMulti</span><span class="tag">chestIconTint</span><span class="tag">chestOpenIcon</span><span class="tag">chestOpenIconTint</span><span class="tag">levelIcon</span><span class="tag">nextLevelIcon</span><span class="tag">replayIcon</span><span class="tag">logIcon</span><span class="tag">settingsIcon</span><span class="tag">graphicsIcon</span><span class="tag">audioIcon</span><span class="tag">advancedIcon</span><span class="tag">usersButton</span><span class="tag">leaderboardsIcon</span><span class="tag">iconOnslaught</span><span class="tag">iconRunaround</span><span class="tag">googlePlayAchievementsIcon</span><span class="tag">googlePlayLeaderboardsIcon</span><span class="tag">googlePlayGamesIcon</span><span class="tag">googlePlusIcon</span><span class="tag">googlePlusSignInButton</span><span class="tag">discordIcon</span><span class="tag">discordLogo</span><span class="tag">discordServer</span><span class="tag">githubLogo</span><span class="tag">ouyaIcon</span><span class="tag">merch</span><span class="tag">logo</span><span class="tag">aliSplash</span><span class="tag">playerLineup</span><span class="tag">multiplayerExamples</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="fonts">
-    <div class="section-header">
-      <div class="section-title">🔤 Fonts</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">fontBig</span><span class="tag">fontSmall0</span><span class="tag">fontSmall1</span><span class="tag">fontSmall2</span><span class="tag">fontSmall3</span><span class="tag">fontSmall4</span><span class="tag">fontSmall5</span><span class="tag">fontSmall6</span><span class="tag">fontSmall7</span><span class="tag">fontExtras</span><span class="tag">fontExtras2</span><span class="tag">fontExtras3</span><span class="tag">fontExtras4</span><span class="tag">fontExtras5</span><span class="tag">chTitleChar1</span><span class="tag">chTitleChar2</span><span class="tag">chTitleChar3</span><span class="tag">chTitleChar4</span><span class="tag">chTitleChar5</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="reflect">
-    <div class="section-header">
-      <div class="section-title">🪞 Reflections</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">reflectionChar_+x</span><span class="tag">reflectionChar_-x</span><span class="tag">reflectionChar_+y</span><span class="tag">reflectionChar_-y</span><span class="tag">reflectionChar_+z</span><span class="tag">reflectionChar_-z</span><span class="tag">reflectionSharp_+x</span><span class="tag">reflectionSharp_-x</span><span class="tag">reflectionSharp_+y</span><span class="tag">reflectionSharp_-y</span><span class="tag">reflectionSharp_+z</span><span class="tag">reflectionSharp_-z</span><span class="tag">reflectionSharper_+x</span><span class="tag">reflectionSharper_-x</span><span class="tag">reflectionSharper_+y</span><span class="tag">reflectionSharper_-y</span><span class="tag">reflectionSharper_+z</span><span class="tag">reflectionSharper_-z</span><span class="tag">reflectionSharpest_+x</span><span class="tag">reflectionSharpest_-x</span><span class="tag">reflectionSharpest_+y</span><span class="tag">reflectionSharpest_-y</span><span class="tag">reflectionSharpest_+z</span><span class="tag">reflectionSharpest_-z</span><span class="tag">reflectionSoft_+x</span><span class="tag">reflectionSoft_-x</span><span class="tag">reflectionSoft_+y</span><span class="tag">reflectionSoft_-y</span><span class="tag">reflectionSoft_+z</span><span class="tag">reflectionSoft_-z</span><span class="tag">reflectionPowerup_+x</span><span class="tag">reflectionPowerup_-x</span><span class="tag">reflectionPowerup_+y</span><span class="tag">reflectionPowerup_-y</span><span class="tag">reflectionPowerup_+z</span><span class="tag">reflectionPowerup_-z</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="spinners">
-    <div class="section-header">
-      <div class="section-title">🔁 Spinners</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">spinner</span><span class="tag">spinner0</span><span class="tag">spinner1</span><span class="tag">spinner2</span><span class="tag">spinner3</span><span class="tag">spinner4</span><span class="tag">spinner5</span><span class="tag">spinner6</span><span class="tag">spinner7</span><span class="tag">spinner8</span><span class="tag">spinner9</span><span class="tag">spinner10</span><span class="tag">spinner11</span>
-    </div>
-  </div>
-
-  <div class="section" data-section="misc">
-    <div class="section-header">
-      <div class="section-title">⚙️ Misc / System</div>
-      <div class="section-count"></div>
-      <div class="section-line"></div>
-    </div>
-    <div class="tags">
-      <span class="tag">white</span><span class="tag">black</span><span class="tag">null</span><span class="tag">empty</span><span class="tag">bg</span><span class="tag">tv</span><span class="tag">file</span><span class="tag">folder</span><span class="tag">puckColor</span><span class="tag">eyeColor</span><span class="tag">meter</span><span class="tag">wings</span><span class="tag">bigG</span>
-    </div>
-  </div>
-
   <div class="no-results" id="noResults">NO TEXTURES FOUND</div>
 </main>
 
@@ -654,125 +408,142 @@
   <div style="text-align: center; margin-top: 0.4rem; color: var(--accent2);">MADE BY: @vishyyy338 & @chrosticey</div>
 </footer>
 
-<script>
-  if (window.location.pathname.endsWith('.html')) {
-    const newUrl = window.location.pathname.replace('.html', '');
-    window.history.replaceState({}, document.title, newUrl);
-  }
-
-  document.querySelectorAll('.section').forEach(sec => {
-    const tags = sec.querySelectorAll('.tag');
-    const countEl = sec.querySelector('.section-count');
-    countEl.textContent = tags.length + ' textures';
-  });
-
-  const allTags = document.querySelectorAll('.tag');
-  const totalCount = document.getElementById('totalCount');
-  const visibleCount = document.getElementById('visibleCount');
-  totalCount.textContent = allTags.length;
-  visibleCount.textContent = allTags.length;
-
-  const toast = document.getElementById('toast');
-  let toastTimer;
-  allTags.forEach(tag => {
-    tag.addEventListener('click', () => {
-      navigator.clipboard.writeText(tag.textContent).catch(() => {});
-      clearTimeout(toastTimer);
-      toast.classList.add('show');
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 1200);
-    });
-  });
-
-  const search = document.getElementById('search');
-  const noResults = document.getElementById('noResults');
-  const sections = document.querySelectorAll('.section');
-
-  search.addEventListener('input', () => {
-    const q = search.value.trim().toLowerCase();
-    let visible = 0;
-
-    sections.forEach(sec => {
-      const tags = sec.querySelectorAll('.tag');
-      let secVisible = 0;
-      tags.forEach(tag => {
-        const match = !q || tag.textContent.toLowerCase().includes(q);
-        tag.classList.toggle('hidden', !match);
-        if (match) { secVisible++; visible++; }
-      });
-      sec.style.display = secVisible === 0 ? 'none' : '';
-      const countEl = sec.querySelector('.section-count');
-      countEl.textContent = (q ? secVisible + ' / ' + tags.length : tags.length) + ' textures';
-    });
-
-    visibleCount.textContent = visible;
-    noResults.style.display = visible === 0 ? 'block' : 'none';
-  });
-</script>
-
-<div id="imgPreview" style="
-  position: fixed;
-  pointer-events: none;
-  display: none;
-  z-index: 9999;
-  background: #000;
-  padding: 6px;
-  border: 1px solid #00e5ff;
-">
+<div id="imgPreview" style="position: fixed; pointer-events: none; display: none; z-index: 9999; background: #000; padding: 6px; border: 1px solid #00e5ff;">
   <img id="imgPreviewImg" src="" style="max-width:200px; max-height:200px;">
 </div>
 
 <script>
-const preview = document.getElementById("imgPreview");
-const previewImg = document.getElementById("imgPreviewImg");
-
-function toFileName(name) {
-
-  if (name.startsWith("reflection")) {
-    const dir = name.slice(-2);
-
-    let base = name.replace(/_([+-][xyz])$/i, "");
-    base = base.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
-    const face = dir.replace("+", "p").replace("-", "n").toLowerCase();
-
-    return base + ".cubemap/" + face + ".png";
+  if (window.location.pathname.endsWith('.html')) {
+    window.history.replaceState({}, document.title, window.location.pathname.replace('.html', '') + (window.location.search || ''));
   }
 
-  return name
-    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
-    .toLowerCase() + ".png";
-}
-
-document.querySelectorAll(".tag").forEach(tag => {
-
-  tag.addEventListener("mouseenter", e => {
-    const file = "texture_files/" + toFileName(tag.textContent.trim());
-    previewImg.src = file;
-    preview.style.display = "block";
-  });
-
-  tag.addEventListener("mousemove", e => {
-    const padding = 15;
-    const imgRect = previewImg.getBoundingClientRect();
-    let x = e.clientX + padding;
-    let y = e.clientY + padding;
-
-    if ((x + imgRect.width) > window.innerWidth) {
-      x = e.clientX - imgRect.width - padding;
+  async function initTextureReference() {
+    let categories = [];
+    try {
+      const res = await fetch('texture_files/textures.json');
+      categories = await res.json();
+    } catch (e) {
+      console.error("Could not fetch textures.json", e);
+      return;
     }
 
-    if ((y + imgRect.height) > window.innerHeight) {
-      y = e.clientY - imgRect.height - padding;
+    const mainContainer = document.getElementById('main');
+    const noResultsEl = document.getElementById('noResults');
+    
+    const activeCategories = categories.filter(cat => cat.items && cat.items.length > 0);
+    
+    document.getElementById('catCount').textContent = activeCategories.length;
+
+    let totalItemsCount = 0;
+
+    activeCategories.forEach(cat => {
+      totalItemsCount += cat.items.length;
+
+      const sectionDiv = document.createElement('div');
+      sectionDiv.className = 'section';
+      sectionDiv.setAttribute('data-section', cat.key);
+
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'section-header';
+      headerDiv.innerHTML = `
+        <div class="section-title">${cat.title}</div>
+        <div class="section-count">${cat.items.length} textures</div>
+        <div class="section-line"></div>
+      `;
+      sectionDiv.appendChild(headerDiv);
+
+      const tagsDiv = document.createElement('div');
+      tagsDiv.className = 'tags';
+
+      cat.items.forEach(name => {
+        const tagSpan = document.createElement('span');
+        tagSpan.className = 'tag';
+        tagSpan.textContent = name;
+        tagsDiv.appendChild(tagSpan);
+      });
+
+      sectionDiv.appendChild(tagsDiv);
+      mainContainer.insertBefore(sectionDiv, noResultsEl);
+    });
+
+    document.getElementById('totalCount').textContent = totalItemsCount;
+    document.getElementById('visibleCount').textContent = totalItemsCount;
+
+    const allTags = document.querySelectorAll('.tag');
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    allTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        navigator.clipboard.writeText(tag.textContent).catch(() => {});
+        clearTimeout(toastTimer);
+        toast.classList.add('show');
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1200);
+      });
+    });
+
+    const search = document.getElementById('search');
+    const sections = document.querySelectorAll('.section');
+
+    search.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      let visible = 0;
+
+      sections.forEach(sec => {
+        const tags = sec.querySelectorAll('.tag');
+        let secVisible = 0;
+        tags.forEach(tag => {
+          const match = !q || tag.textContent.toLowerCase().includes(q);
+          tag.classList.toggle('hidden', !match);
+          if (match) { secVisible++; visible++; }
+        });
+        sec.style.display = secVisible === 0 ? 'none' : '';
+        const countEl = sec.querySelector('.section-count');
+        countEl.textContent = (q ? secVisible + ' / ' + tags.length : tags.length) + ' textures';
+      });
+
+      visibleCount.textContent = visible;
+      noResultsEl.style.display = visible === 0 ? 'block' : 'none';
+    });
+
+    const preview = document.getElementById("imgPreview");
+    const previewImg = document.getElementById("imgPreviewImg");
+
+    function toFileName(name) {
+      if (name.startsWith("reflection")) {
+        const dir = name.slice(-2);
+        let base = name.replace(/_([+-][xyz])$/i, "").replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase();
+        return base + ".cubemap/" + dir.replace("+", "p").replace("-", "n").toLowerCase() + ".png";
+      }
+      return name.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toLowerCase() + ".png";
     }
 
-    preview.style.left = x + "px";
-    preview.style.top = y + "px";
-  });
+    allTags.forEach(tag => {
+      tag.addEventListener("mouseenter", () => {
+        previewImg.src = "texture_files/" + toFileName(tag.textContent.trim());
+        preview.style.display = "block";
+      });
 
-  tag.addEventListener("mouseleave", () => {
-    preview.style.display = "none";
-  });
+      tag.addEventListener("mousemove", e => {
+        const padding = 15;
+        const imgRect = previewImg.getBoundingClientRect();
+        let x = e.clientX + padding;
+        let y = e.clientY + padding;
 
-});
+        if ((x + imgRect.width) > window.innerWidth) x = e.clientX - imgRect.width - padding;
+        if ((y + imgRect.height) > window.innerHeight) y = e.clientY - imgRect.height - padding;
+
+        preview.style.left = x + "px";
+        preview.style.top = y + "px";
+      });
+
+      tag.addEventListener("mouseleave", () => {
+        preview.style.display = "none";
+      });
+    });
+  }
+
+  initTextureReference();
 </script>
 
 </body>
