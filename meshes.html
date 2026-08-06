@@ -303,8 +303,7 @@
 
     const mainContainer = document.getElementById('main');
     const noResultsEl = document.getElementById('noResults');
-    
-    // Filter out categories that have no items (empty arrays)
+
     const activeCategories = categories.filter(cat => cat.items && cat.items.length > 0);
     
     document.getElementById('catCount').textContent = activeCategories.length;
